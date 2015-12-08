@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="com.wipe.healthy.core.dao.write.UserWriteDao">
+    
+    <insert id="create" parameterType="com.wipe.healthy.core.model.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="nativePlace != null">
+                native_place,
+            </if>
+            <if test="major != null">
+                major,
+            </if>
+            <if test="height != null">
+                height,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="heartRate != null">
+                heart_rate,
+            </if>
+            <if test="pulmonary != null">
+                pulmonary,
+            </if>
+            <if test="foodHabits != null">
+                food_habits,
+            </if>
+        </trim>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="birthday != null">
+                #{birthday},
+            </if>
+            <if test="nativePlace != null">
+                #{nativePlace}
+            </if>
+            <if test="major != null">
+                #{major}
+            </if>
+            <if test="height != null">
+                #{height}
+            </if>
+            <if test="weight != null">
+                #{weight}
+            </if>
+            <if test="heartRate != null">
+                #{heartRate}
+            </if>
+            <if test="pulmonary != null">
+                #{pulmonary}
+            </if>
+            <if test="foodHabits != null">
+                #{foodHabits}
+            </if>
+        </trim>
+    </insert>
 
 </mapper>
