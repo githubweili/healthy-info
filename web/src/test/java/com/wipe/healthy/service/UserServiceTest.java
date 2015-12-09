@@ -3,7 +3,7 @@ package com.wipe.healthy.service;
 import com.wipe.healthy.BaseTest;
 import com.wipe.healthy.core.model.User;
 import com.wipe.healthy.core.service.IUserService;
-import org.junit.*;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -19,13 +19,19 @@ public class UserServiceTest extends BaseTest{
     @Autowired
     IUserService userService;
 
-    @org.junit.Test
+    @Test
     public void testCreate(){
         User user = create();
         Integer id = userService.create(user);
         System.out.print(id);
     }
 
+
+    @Test
+    public void testFindById(){
+        User user = userService.findById(6);
+        System.out.print(user.toString());
+    }
 
     private User create(){
         User user = new User();

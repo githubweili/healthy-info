@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wipe.healthy.core.dao.read.UserReadDao">
+
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.wipe.healthy.core.model.User">
+        SELECT id,sex,major,height,weight,heart_rate,pulmonary,food_habits,native_place,birthday
+        FROM user
+        WHERE id = #{id}
+    </select>
+</mapper>
