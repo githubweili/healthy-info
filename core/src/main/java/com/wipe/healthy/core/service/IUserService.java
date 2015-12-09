@@ -8,6 +8,7 @@ import com.wipe.healthy.core.model.User;
  * Date: on 2015/12/9.
  * Time:0:20
  */
+
 public interface IUserService {
 
     Integer create(User user);

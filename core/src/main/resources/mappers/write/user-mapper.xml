@@ -33,7 +33,7 @@
                 food_habits,
             </if>
         </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sex != null">
                 #{sex},
             </if>
@@ -41,25 +41,25 @@
                 #{birthday},
             </if>
             <if test="nativePlace != null">
-                #{nativePlace}
+                #{nativePlace},
             </if>
             <if test="major != null">
-                #{major}
+                #{major},
             </if>
             <if test="height != null">
-                #{height}
+                #{height},
             </if>
             <if test="weight != null">
-                #{weight}
+                #{weight},
             </if>
             <if test="heartRate != null">
-                #{heartRate}
+                #{heartRate},
             </if>
             <if test="pulmonary != null">
-                #{pulmonary}
+                #{pulmonary},
             </if>
             <if test="foodHabits != null">
-                #{foodHabits}
+                #{foodHabits},
             </if>
         </trim>
     </insert>

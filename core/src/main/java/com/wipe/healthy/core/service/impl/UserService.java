@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * Date: on 2015/12/9.
  * Time:0:25
  */
-@Service
+@Service("userService")
 public class UserService implements IUserService{
 
     @Resource

@@ -12,14 +12,6 @@
           </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-oxm:4.1.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.3.0" />
-          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.35" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
-          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" />
-          <element id="library" level="project" name="Maven: org.slf4j:log4j-over-slf4j:1.7.5" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.0.13" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.0.13" />
-          <element id="library" level="project" name="Maven: com.google.guava:guava:19.0-rc1" />
-          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.1.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.1.7.RELEASE" />
@@ -38,6 +30,14 @@
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.15" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:7.0.42" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:7.0.42" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" />
+          <element id="library" level="project" name="Maven: org.slf4j:log4j-over-slf4j:1.7.5" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.0.13" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.0.13" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:19.0-rc1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.35" />
         </element>
       </element>
       <element id="directory" name="META-INF">
