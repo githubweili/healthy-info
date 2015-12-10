@@ -5,63 +5,48 @@
     <insert id="create" parameterType="com.wipe.healthy.core.model.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="birthday != null">
-                birthday,
-            </if>
-            <if test="nativePlace != null">
-                native_place,
-            </if>
-            <if test="major != null">
-                major,
-            </if>
-            <if test="height != null">
-                height,
-            </if>
-            <if test="weight != null">
-                weight,
-            </if>
-            <if test="heartRate != null">
-                heart_rate,
-            </if>
-            <if test="pulmonary != null">
-                pulmonary,
-            </if>
-            <if test="foodHabits != null">
-                food_habits,
-            </if>
+            <if test="sex != null">    sex,</if>
+            <if test="birthday != null">    birthday,</if>
+            <if test="nativePlace != null">    native_place,</if>
+            <if test="major != null">    major,</if>
+            <if test="height != null">    height,</if>
+            <if test="weight != null">    weight,</if>
+            <if test="heartRate != null">    heart_rate,</if>
+            <if test="pulmonary != null">    pulmonary,</if>
+            <if test="foodHabits != null">    food_habits,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="sex != null">
-                #{sex},
-            </if>
-            <if test="birthday != null">
-                #{birthday},
-            </if>
-            <if test="nativePlace != null">
-                #{nativePlace},
-            </if>
-            <if test="major != null">
-                #{major},
-            </if>
-            <if test="height != null">
-                #{height},
-            </if>
-            <if test="weight != null">
-                #{weight},
-            </if>
-            <if test="heartRate != null">
-                #{heartRate},
-            </if>
-            <if test="pulmonary != null">
-                #{pulmonary},
-            </if>
-            <if test="foodHabits != null">
-                #{foodHabits},
-            </if>
+            <if test="sex != null">    #{sex},</if>
+            <if test="birthday != null">    #{birthday},</if>
+            <if test="nativePlace != null">    #{nativePlace},</if>
+            <if test="major != null">    #{major},</if>
+            <if test="height != null">    #{height},</if>
+            <if test="weight != null">    #{weight},</if>
+            <if test="heartRate != null">    #{heartRate},</if>
+            <if test="pulmonary != null">    #{pulmonary},</if>
+            <if test="foodHabits != null">    #{foodHabits},</if>
         </trim>
     </insert>
 
+    <update id="update" parameterType="com.wipe.healthy.core.model.User">
+        UPDATE user
+        <set>
+            <if test="sex != null">  sex = #{sex},</if>
+            <if test="birthday != null"> birthday = #{birthday},</if>
+            <if test="nativePlace != null">  native_place = #{nativePlace},</if>
+            <if test="major != null">  major = #{major},</if>
+            <if test="height != null">  height = #{height},</if>
+            <if test="weight != null">  weight = #{weight},</if>
+            <if test="heartRate != null"> heart_rate = #{heartRate},</if>
+            <if test="pulmonary != null">  pulmonary = #{pulmonary},</if>
+            <if test="foodHabits != null">  food_habits =  #{foodHabits},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE
+        FROM user
+        WHERE id = #{id}
+    </delete>
 </mapper>

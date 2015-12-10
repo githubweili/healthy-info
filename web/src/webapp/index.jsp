@@ -17,21 +17,16 @@
   <div id="main" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
   <div id="mainMap" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
 
-  <!--Step:2 Import echarts.js-->
-  <!--Step:2 引入echarts.js-->
-  <script src="js/echarts.js"></script>
 
+  <script src="js/echarts.js"></script>
   <script type="text/javascript">
-      // Step:3 conifg ECharts's path, link to echarts.js from current page.
-      // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+
+
       require.config({
           paths: {
               echarts: './js'
           }
       });
-
-      // Step:4 require echarts and use it in the callback.
-      // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
       require(
               [
                   'echarts',
@@ -85,32 +80,9 @@
                           }
                       ]
                   });
-
-                  // --- 地图 ---
-                  var myChart2 = ec.init(document.getElementById('mainMap'));
-                  myChart2.setOption({
-                      tooltip : {
-                          trigger: 'item',
-                          formatter: '{b}'
-                      },
-                      series : [
-                          {
-                              name: '中国',
-                              type: 'map',
-                              mapType: 'china',
-                              selectedMode : 'multiple',
-                              itemStyle:{
-                                  normal:{label:{show:true}},
-                                  emphasis:{label:{show:true}}
-                              },
-                              data:[
-                                  {name:'广东',selected:true}
-                              ]
-                          }
-                      ]
-                  });
               }
       );
+
   </script>
   </body>
 </html>

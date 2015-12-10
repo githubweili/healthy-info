@@ -16,6 +16,9 @@ public class Account {
     /**用户信息主键**/
     private Integer userId;
 
+    /**用户登录名**/
+    private String englishName;
+
     /**用户登陆密码**/
     private String password;
 
@@ -54,17 +57,26 @@ public class Account {
         this.authorithy = authorithy;
     }
 
+    public String getEnglishName() {
+        return englishName;
+    }
+
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Account user = (Account) o;
+        Account account = (Account) o;
 
-        if (authorithy != null ? !authorithy.equals(user.authorithy) : user.authorithy != null) return false;
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
+        if (authorithy != null ? !authorithy.equals(account.authorithy) : account.authorithy != null) return false;
+        if (englishName != null ? !englishName.equals(account.englishName) : account.englishName != null) return false;
+        if (id != null ? !id.equals(account.id) : account.id != null) return false;
+        if (password != null ? !password.equals(account.password) : account.password != null) return false;
+        if (userId != null ? !userId.equals(account.userId) : account.userId != null) return false;
 
         return true;
     }
@@ -73,6 +85,7 @@ public class Account {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (englishName != null ? englishName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (authorithy != null ? authorithy.hashCode() : 0);
         return result;
@@ -80,9 +93,10 @@ public class Account {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Account{" +
                 "id=" + id +
                 ", userId=" + userId +
+                ", englishName='" + englishName + '\'' +
                 ", password='" + password + '\'' +
                 ", authorithy='" + authorithy + '\'' +
                 '}';
