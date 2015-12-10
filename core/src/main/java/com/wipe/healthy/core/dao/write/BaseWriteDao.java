@@ -15,5 +15,5 @@ public interface BaseWriteDao<T> {
     Boolean update(T t);
 
     /**删除**/
-    boolean delete(Integer id);
+    Boolean delete(Integer id);
 }
