@@ -1,5 +1,9 @@
 package com.wipe.healthy.web.controller;
 
+import com.google.common.base.Optional;
+import com.google.common.primitives.Ints;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  * Created by IntelliJ IDEA.
  * User:Created by wei.li
@@ -8,4 +12,10 @@ package com.wipe.healthy.web.controller;
  * To change this template use File | Settings | File and Code Templates.
  */
 public class Test {
+
+
+    public ModelAndView test(){
+
+        return new ModelAndView();
+    }
 }

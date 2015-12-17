@@ -87,7 +87,7 @@ public class AccountService implements IAccountService{
      * @return 账户信息列表
      */
     @Override
-    public List<Account> batchQuery(Set<Integer> ids) {
+    public  List<Account> batchQuery(Set<Integer> ids) {
         return this.accountReadDao.batchQuery(ids);
     }
 }
