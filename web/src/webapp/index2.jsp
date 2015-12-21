@@ -55,6 +55,23 @@
                 <li>
                     <a href="index.html#">
                         <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">个人信息</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="page/user/add.jsp">信息录入</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="#">页面二</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="index.html#">
+                        <i class="fa fa fa-bar-chart-o"></i>
                         <span class="nav-label">统计图表</span>
                         <span class="fa arrow"></span>
                     </a>
@@ -129,7 +146,7 @@
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.html" frameborder="0" data-id="index_v1.html" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">&copy; 2014-2015 <a href="../../index.html" target="_blank">zihan's blog</a>
+            <div class="pull-right">&copy; 2015 for healthy-info <a href="../../index.html" target="_blank">*****信息技术</a>
             </div>
         </div>
     </div>
