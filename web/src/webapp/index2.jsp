@@ -60,7 +60,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="page/user/add.jsp">信息录入</a>
+                            <a class="J_menuItem" href="page/fitness/add.jsp">信息录入</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="#">页面二</a>
