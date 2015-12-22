@@ -155,33 +155,21 @@
         $(function(){
             var e = [{
                 text: "中国",
-                href: "#parent1",
-                tags: ["2"],
                 nodes:[{
-                    text: "湖南",
-                    href: "#child1",
-                    tags: ["0"]
+                    text: "湖南"
                 },
                     {
-                        text: "湖北",
-                        href: "#child1",
-                        tags: ["0"]
+                        text: "湖北"
                     }
                 ]
             },
                 {
                     text: "欧洲",
-                    href: "#parent1",
-                    tags: ["2"],
                     nodes:[{
-                        text: "东欧",
-                        href: "#child1",
-                        tags: ["0"]
+                        text: "东欧"
                     },
                         {
-                            text: "西欧",
-                            href: "#child1",
-                            tags: ["0"]
+                            text: "西欧"
                         }
                     ]
                 }
