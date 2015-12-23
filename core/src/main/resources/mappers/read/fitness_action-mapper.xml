@@ -20,7 +20,7 @@
         FROM fitness_action
     </select>
 
-    <select id="batchQuery" parameterType="java.util.HashSet" resultMap="com.wipe.healthy.core.model.FitnessAction">
+    <select id="batchQuery" parameterType="java.util.HashSet" resultType="com.wipe.healthy.core.model.FitnessAction">
         SELECT
         <include refid="fitness_action"/>
         FROM fitness_action

@@ -32,7 +32,11 @@ public class CityBiz {
     }
 
 
-
+    /**
+     * 把城市列表转化成树形结构
+     * @param cityList 城市列表信息
+     * @return 树形结构信息
+     */
     public List<NodesOutput> cityToTree(List<City> cityList){
         List<NodesOutput> nodesOutputList = Lists.newArrayList();
         for (City city : cityList){

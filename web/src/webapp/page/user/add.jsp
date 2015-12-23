@@ -153,7 +153,20 @@
     <script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
     <script  type="text/javascript">
         $(function(){
-            var e = [{
+            var e;
+            $.ajax({
+                url: "/city/list.do",
+                type: "get",
+                dataType: "json",
+                timeout: 120e3,
+                success:function(data){
+                    e = data;
+                },
+                error:function(data){
+                    alert("加载失败");
+                }
+            });
+           /* var e = [{
                 text: "中国",
                 nodes:[{
                     text: "湖南"
@@ -173,7 +186,7 @@
                         }
                     ]
                 }
-            ]
+            ]*/
 
             $("#treeview").treeview({
                 levels: 1,
