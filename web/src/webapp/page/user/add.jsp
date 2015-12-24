@@ -22,14 +22,14 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">姓名：</label>
-                            <div class="col-sm-4">
-                                <input id="name" name="name" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            <div class="col-sm-4 single">
+                                <input id="name" name="name" type="text" class="form-control">
                             </div>
                             <label class="col-sm-2 control-label">性别：</label>
                             <div class="col-sm-4 form-inline">
                                 <div class="radio">
                                     <label>
-                                        <input id="man" type="radio" value="0" name="sex">
+                                        <input id="man" type="radio" value="0" name="sex" checked>
                                          男
                                     </label>
                                 </div>
@@ -44,32 +44,32 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">身高：</label>
-                            <div class="col-sm-4">
-                                <input id="height" name="height" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            <div class="col-sm-4 single">
+                                <input id="height" name="height" type="text" class="form-control">
                             </div>
                             <label class="col-sm-2 control-label">体重：</label>
-                            <div class="col-sm-4">
-                                <input id="weight" name="weight" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            <div class="col-sm-4 single">
+                                <input id="weight" name="weight" type="text" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">心率：</label>
-                            <div class="col-sm-4">
-                                <input id="heartRate" name="heartRate" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            <div class="col-sm-4 single">
+                                <input id="heartRate" name="heartRate"  type="text" class="form-control">
                             </div>
                             <label class="col-sm-2 control-label">肺活量：</label>
-                            <div class="col-sm-4">
-                                <input id="pulmonary" name="pulmonary" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            <div class="col-sm-4 single">
+                                <input id="pulmonary" name="pulmonary"  type="text" class="form-control" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">籍贯：</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 single">
                                 <div class="input-group">
-                                    <input id="nativePlace" name="nativePlace" minlength="2" type="text"
-                                           class="form-control" required="" aria-required="true" onclick="showCity();">
+                                    <input id="nativePlace" name="nativePlace"  type="text"
+                                           class="form-control"  onclick="showCity();">
                                     <span class="input-group-addon " onclick="showCity();">
                                         <span class="fa fa-circle-o-notch"></span>
                                     </span>
@@ -111,7 +111,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">说明：</label>
                             <div class="col-sm-10">
-                                <textarea id="ccomment" name="comment" class="form-control" required="" aria-required="true"></textarea>
+                                <textarea id="ccomment" name="comment" class="form-control" ></textarea>
                             </div>
                         </div>
 
@@ -119,8 +119,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-3">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-check"></i>
+                                <button class="btn btn-default" type="reset">
                                     取消</button>
                             </div>
                             <div class="col-sm-4 ">
@@ -147,7 +146,6 @@
 
     <!-- jQuery Validation plugin javascript-->
     <script src="../../js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="../../js/plugins/validate/messages_zh.min.js"></script>
 
     <!-- 树状js-->
     <script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
@@ -165,7 +163,7 @@
                     alert("加载失败");
                 }
             });
-
+            MyValidator.init();
         });
 
         function loadTree(e){
@@ -183,6 +181,91 @@
         function showCity(){
             $('#modal').modal('show');
         }
+
+
+        <!-- 表单验证-->
+        var MyValidator = function() {
+            var handleSubmit = function() {
+                $('.form-horizontal').validate({
+                    errorElement : 'span',
+                    errorClass : 'help-block',
+                    focusInvalid : false,
+                    rules : {
+                        "name" : {
+                            required : true
+                        },
+                        "height" : {
+                            required : true,
+                            number : true
+                        },
+                        "weight" : {
+                            required : true,
+                            number : true
+                        },
+                        "heartRate" : {
+                            required : true,
+                            number : true
+                        },
+                        "pulmonary" : {
+                            required : true,
+                            number : true
+                        },
+                        "nativePlace" : {
+                            required : true
+                        }
+                    },
+                    messages : {
+                        "name" : {
+                            required : "姓名不能为空."
+                        },
+                        "height" : {
+                            required : "身高不能为空.",
+                            number : "请输入合法数字"
+                        },
+                        "weight" : {
+                            required : "体重不能为空.",
+                            number : "请输入合法数字"
+                        },
+                        "heartRate" : {
+                            required : "心率不能为空.",
+                            number : "请输入合法数字"
+                        },
+                        "pulmonary" : {
+                            required : "肺活量不能为空.",
+                            number : "请输入合法数字"
+                        },
+                        "nativePlace" : {
+                            required : "籍贯不能为空."
+                        }
+
+                    },
+                    highlight : function(element) {
+                        $(element).closest('.single').addClass('has-error');
+                    },
+                    success : function(label) {
+                        label.closest('.single').removeClass('has-error');
+                        label.remove();
+                    },
+                    errorPlacement : function(error, label) {
+                        label.closest('.single').append(error).attr("style","float:left");
+                    },
+                    submitHandler : function(form) {
+                        form.submit();
+                    }
+                });
+                $('.form-horizontal input').keypress(function(e) {
+                    if (e.which == 13) {
+                        return false
+                    }
+                });
+            }
+            return {
+                init : function() {
+                    handleSubmit();
+                }
+            };
+        }();
+
     </script>
 </body>
 </html>
