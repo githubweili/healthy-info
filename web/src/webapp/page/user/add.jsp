@@ -89,7 +89,7 @@
                         </div>
 
 
-                        <div class="modal" id="modal" tabindex="-1" role="dialog"  aria-hidden="true">
+                        <div class="modal" id="modal" tabindex="-1" role="dialog"  aria-hidden="true" >
                             <div class="modal-dialog">
                                 <div class="modal-content animated bounceInRight">
                                     <div class="modal-header">
@@ -97,7 +97,7 @@
                                         <h4 class="modal-title">城市选择</h4>
                                         <small>请选择您所在的城市。</small>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body" style="overflow: scroll;height: 400px;overflow-x: hidden">
                                         <div class="ibox-content">
                                             <div id="treeview" class="test"></div>
                                         </div>
@@ -153,41 +153,22 @@
     <script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
     <script  type="text/javascript">
         $(function(){
-            var e;
             $.ajax({
                 url: "/city/list.do",
                 type: "get",
                 dataType: "json",
                 timeout: 120e3,
                 success:function(data){
-                    e = data;
+                   loadTree(data);
                 },
                 error:function(data){
                     alert("加载失败");
                 }
             });
-           /* var e = [{
-                text: "中国",
-                nodes:[{
-                    text: "湖南"
-                },
-                    {
-                        text: "湖北"
-                    }
-                ]
-            },
-                {
-                    text: "欧洲",
-                    nodes:[{
-                        text: "东欧"
-                    },
-                        {
-                            text: "西欧"
-                        }
-                    ]
-                }
-            ]*/
 
+        });
+
+        function loadTree(e){
             $("#treeview").treeview({
                 levels: 1,
                 color: "#428bca",
@@ -197,7 +178,7 @@
                     $("#modal").modal('hide');
                 }
             });
-        });
+        };
 
         function showCity(){
             $('#modal').modal('show');

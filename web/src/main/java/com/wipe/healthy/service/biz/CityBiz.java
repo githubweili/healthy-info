@@ -1,12 +1,15 @@
 package com.wipe.healthy.service.biz;
 
 import com.google.common.collect.Lists;
+import com.wipe.healthy.constant.Constant;
 import com.wipe.healthy.core.model.City;
 import com.wipe.healthy.core.service.ICityService;
 import com.wipe.healthy.web.dto.NodesOutput;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -61,13 +64,20 @@ public class CityBiz {
      */
     public List<NodesOutput> addLeaf(Integer leaf,Integer parentId,List<City> cityList){
        List<NodesOutput> nodesOutputList =Lists.newArrayList();
-        if (leaf.equals(0)){
+        if (leaf.equals(Constant.OWN_LEAF)){
             for (City city : cityList){
                 if (city.getParentId().equals(parentId)){
                     NodesOutput nodesOutput = new NodesOutput();
                     nodesOutput.setText(city.getName());
                     nodesOutput.setId(city.getId());
-                    nodesOutput.setNodes(this.addLeaf(city.getLeaf(),city.getId(),cityList));
+                    List<NodesOutput> nodesOutputListOut = this.addLeaf(city.getLeaf(),city.getId(),cityList);
+                    if(!CollectionUtils.isEmpty(nodesOutputListOut)){
+                        nodesOutput.setNodes(nodesOutputListOut);
+                    }
+                   else {
+                        //转json时需要忽略节点
+                        nodesOutput.setNodes(null);
+                    }
                     nodesOutputList.add(nodesOutput);
                 }
             }
