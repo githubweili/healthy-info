@@ -3,7 +3,7 @@
 <mapper namespace="com.wipe.healthy.core.dao.read.UserReadDao">
 
     <sql id="user">
-        id,sex,major,height,weight,heart_rate,pulmonary,food_habits,native_place,birthday
+        id,name,sex,major,height,weight,heart_rate,pulmonary,food_habits,native_place,birthday,describe
     </sql>
 
 

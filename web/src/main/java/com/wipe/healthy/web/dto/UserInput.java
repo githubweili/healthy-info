@@ -16,6 +16,9 @@ public class UserInput {
     /** 用户信息主键**/
     private Integer id;
 
+    /** 用户信息名称**/
+    private String name;
+
     /**用户性别**/
     private Integer sex;
 
@@ -132,6 +135,14 @@ public class UserInput {
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public  User convertToUser(UserInput userInput){
