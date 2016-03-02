@@ -40,6 +40,9 @@ public class User {
     /**用户食物爱好**/
     private Integer foodHabits;
 
+    /**描叙信息**/
+    private String describe;
+
     public Integer getId() {
         return id;
     }
@@ -120,14 +123,25 @@ public class User {
         this.foodHabits = foodHabits;
     }
 
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
     @Override
     public boolean equals(Object o) {
+
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
 
         if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null) return false;
+        if (describe != null ? !describe.equals(user.describe) : user.describe != null) return false;
         if (foodHabits != null ? !foodHabits.equals(user.foodHabits) : user.foodHabits != null) return false;
         if (heartRate != null ? !heartRate.equals(user.heartRate) : user.heartRate != null) return false;
         if (height != null ? !height.equals(user.height) : user.height != null) return false;
@@ -153,6 +167,7 @@ public class User {
         result = 31 * result + (heartRate != null ? heartRate.hashCode() : 0);
         result = 31 * result + (pulmonary != null ? pulmonary.hashCode() : 0);
         result = 31 * result + (foodHabits != null ? foodHabits.hashCode() : 0);
+        result = 31 * result + (describe != null ? describe.hashCode() : 0);
         return result;
     }
 
@@ -169,6 +184,7 @@ public class User {
                 ", heartRate=" + heartRate +
                 ", pulmonary=" + pulmonary +
                 ", foodHabits=" + foodHabits +
+                ", describe='" + describe + '\'' +
                 '}';
     }
 }

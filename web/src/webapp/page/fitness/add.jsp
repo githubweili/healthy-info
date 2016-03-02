@@ -20,11 +20,11 @@
                 <div class="ibox">
                     <div class="ibox-content">
                         <h2>
-                            个人信息录入向导
+                            健身信息向导
                         </h2>
 
                         <form id="form" action="form_wizard.html#" class="wizard-big">
-                            <h1>账户</h1>
+                            <h1>健身行为</h1>
                             <fieldset>
                                 <h2>账户信息</h2>
                                 <div class="row">
@@ -52,14 +52,14 @@
                                 </div>
 
                             </fieldset>
-                            <h1>个人资料</h1>
+                            <h1>行为信息</h1>
                             <fieldset>
                                 <h2>个人资料信息</h2>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>姓名 *</label>
-                                            <input id="name" name="name" type="text" class="form-control required">
+                                            <input id="name" name="major" type="text" class="form-control required">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>地址 *</label>
-                                            <input id="address" name="address" type="text" class="form-control">
+                                            <input id="address" name="nativePlace" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>

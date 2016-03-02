@@ -14,6 +14,7 @@
             <if test="heartRate != null">    heart_rate,</if>
             <if test="pulmonary != null">    pulmonary,</if>
             <if test="foodHabits != null">    food_habits,</if>
+            <if test="describe != null">    describe,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sex != null">    #{sex},</if>
@@ -25,6 +26,7 @@
             <if test="heartRate != null">    #{heartRate},</if>
             <if test="pulmonary != null">    #{pulmonary},</if>
             <if test="foodHabits != null">    #{foodHabits},</if>
+            <if test="describe != null">    #{describe},</if>
         </trim>
     </insert>
 
@@ -40,6 +42,7 @@
             <if test="heartRate != null"> heart_rate = #{heartRate},</if>
             <if test="pulmonary != null">  pulmonary = #{pulmonary},</if>
             <if test="foodHabits != null">  food_habits =  #{foodHabits},</if>
+            <if test="describe != null">  describe =  #{describe},</if>
         </set>
         WHERE id = #{id}
     </update>

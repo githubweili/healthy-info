@@ -18,12 +18,25 @@
             <div class="col-sm-12">
                 <div class="ibox-content">
 
-                    <form class="form-horizontal m-t" id="commentForm">
+                    <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">姓名：</label>
                             <div class="col-sm-4 single">
-                                <input id="name" name="name" type="text" class="form-control">
+                                <input id="name" name="height" type="text" class="form-control">
+                            </div>
+                            <label class="col-sm-2 control-label">生日：</label>
+                            <div class="col-sm-4 single">
+                                <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                                <label class="laydate-icon"></label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名：</label>
+                            <div class="col-sm-4 single">
+                                <input id="major" name="major" type="text" class="form-control">
                             </div>
                             <label class="col-sm-2 control-label">性别：</label>
                             <div class="col-sm-4 form-inline">
@@ -79,11 +92,11 @@
 
                             <label class="col-sm-2 control-label">食物习惯：</label>
                             <div class="col-sm-4">
-                               <select class="form-control m-b" name="foot">
-                                   <option>辣</option>
-                                   <option>甜</option>
-                                   <option>咸</option>
-                                   <option>淡</option>
+                               <select class="form-control m-b" name="foodHabits">
+                                   <option value="0">辣</option>
+                                   <option value="1">甜</option>
+                                   <option value="2">咸</option>
+                                   <option value="3">淡</option>
                                </select>
                             </div>
                         </div>
@@ -111,7 +124,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">说明：</label>
                             <div class="col-sm-10">
-                                <textarea id="ccomment" name="comment" class="form-control" ></textarea>
+                                <textarea id="ccomment" name="describe" class="form-control" ></textarea>
                             </div>
                         </div>
 
@@ -149,6 +162,9 @@
 
     <!-- 树状js-->
     <script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
+
+
+
     <script  type="text/javascript">
         $(function(){
             $.ajax({
@@ -162,6 +178,7 @@
                 error:function(data){
                     alert("加载失败");
                 }
+
             });
             MyValidator.init();
         });
@@ -265,6 +282,7 @@
                 }
             };
         }();
+
 
     </script>
 </body>
