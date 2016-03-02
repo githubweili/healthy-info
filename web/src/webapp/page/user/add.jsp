@@ -20,21 +20,11 @@
 
                     <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">姓名：</label>
-                            <div class="col-sm-4 single">
-                                <input id="name" name="height" type="text" class="form-control">
-                            </div>
-                            <label class="col-sm-2 control-label">生日：</label>
-                            <div class="col-sm-4 single">
-                                <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-                                <label class="laydate-icon"></label>
-                            </div>
-                        </div>
+
 
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">姓名：</label>
+                            <label class="col-sm-2 control-label">专项：</label>
                             <div class="col-sm-4 single">
                                 <input id="major" name="major" type="text" class="form-control">
                             </div>
@@ -52,6 +42,18 @@
                                         女
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名：</label>
+                            <div class="col-sm-4 single">
+                                <input id="name" name="height" type="text" class="form-control">
+                            </div>
+
+                            <label class="col-sm-2 control-label">生日：</label>
+                            <div class="col-sm-4 single">
+                                <input  placeholder="YYYY-MM-DD hh:mm:ss" class="form-control layer-date" onclick="laydate()">
                             </div>
                         </div>
 
@@ -162,7 +164,7 @@
 
     <!-- 树状js-->
     <script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
-
+    <script src="../../js/plugins/laydate/laydate.js"></script>
 
 
     <script  type="text/javascript">
@@ -283,6 +285,14 @@
             };
         }();
 
+        //时间控件
+        ;!function(){
+            laydate.skin('danlan');
+            laydate({
+                elem: '#demo'
+            })
+
+        }();
 
     </script>
 </body>
