@@ -65,6 +65,9 @@
                         <li>
                             <a class="J_menuItem" href="page/user/add.jsp">信息录入</a>
                         </li>
+                        <li>
+                            <a class="J_menuItem" href="user/list.do">信息列表</a>
+                        </li>
                     </ul>
                 </li>
 

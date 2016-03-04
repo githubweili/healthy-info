@@ -1,5 +1,6 @@
 package com.wipe.healthy.web.controller;
 
+import com.wipe.healthy.core.model.User;
 import com.wipe.healthy.service.biz.UserBiz;
 import com.wipe.healthy.web.dto.UserInput;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户信息控制器
@@ -23,18 +25,32 @@ public class UserController {
 
 
     public String getRoutePath() {
-        return "/user/";
+        return "../page/user/";
     }
+
+
+    private final String createViewName = "list.jsp";
     /**
      * 用户信息新增
      * @param userInput 用户信息输入视图
      * @return
      */
-
-    private final String createViewName = "list.jsp";
     @RequestMapping(value = "/create")
     public String create(UserInput userInput){
         userBiz.create(userInput.convertToUser(userInput));
         return getRoutePath()+createViewName;
+    }
+
+    private final String listViewName = "list";
+    /**
+     * 用户列表查询
+     * @return
+     */
+    @RequestMapping(value = "/list")
+    public ModelAndView list(){
+        List<User> userList = userBiz.list();
+        ModelAndView modelAndView = new ModelAndView(getRoutePath()+listViewName);
+        modelAndView.addObject("userList",userList);
+        return modelAndView;
     }
 }

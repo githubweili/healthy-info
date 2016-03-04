@@ -5,6 +5,8 @@ import com.wipe.healthy.core.service.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *用户信息业务服务层
@@ -25,4 +27,14 @@ public class UserBiz {
     public Integer create(User user){
         return userService.create(user);
     }
+
+    /**
+     * 用户信息列表
+     * @return 用户信息列表
+     */
+    public List<User> list(){
+        return userService.list(new HashMap<String, Object>());
+    }
+
+
 }
