@@ -17,11 +17,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox-content">
-
                     <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
-
-
-
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">专项：</label>
@@ -134,7 +130,8 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-3">
-                                <button class="btn btn-default" type="reset">
+                                <button class="btn btn-default" type="reset" onclick="window.history.go(-1)" >
+                                    <i class="fa fa-check"></i>
                                     取消</button>
                             </div>
                             <div class="col-sm-4 ">
@@ -270,6 +267,7 @@
                     },
                     submitHandler : function(form) {
                         form.submit();
+                        //ajaxSubmit();
                     }
                 });
                 $('.form-horizontal input').keypress(function(e) {
@@ -291,9 +289,24 @@
             laydate({
                 elem: '#demo'
             })
-
         }();
 
+        function ajaxSubmit(){
+            var url = "/user/create.do";
+            $.ajax({
+                type:"post",
+                url:url,
+                dataType: "json",
+                data:$('#commentForm').serialize(),
+                async: false,
+                success: function(data){
+
+                },
+                error: function(){
+
+                }
+            });
+        }
     </script>
 </body>
 </html>

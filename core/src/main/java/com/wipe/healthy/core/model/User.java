@@ -16,6 +16,9 @@ public class User {
     /**用户性别**/
     private Integer sex;
 
+    /**用户姓名*/
+    private String name;
+
     /**用户出生年月**/
     private Date birthday;
 
@@ -131,10 +134,16 @@ public class User {
         this.describe = describe;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
-
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -147,6 +156,7 @@ public class User {
         if (height != null ? !height.equals(user.height) : user.height != null) return false;
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (major != null ? !major.equals(user.major) : user.major != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (nativePlace != null ? !nativePlace.equals(user.nativePlace) : user.nativePlace != null) return false;
         if (pulmonary != null ? !pulmonary.equals(user.pulmonary) : user.pulmonary != null) return false;
         if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
@@ -159,6 +169,7 @@ public class User {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (nativePlace != null ? nativePlace.hashCode() : 0);
         result = 31 * result + (major != null ? major.hashCode() : 0);
@@ -176,6 +187,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", sex=" + sex +
+                ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", nativePlace='" + nativePlace + '\'' +
                 ", major='" + major + '\'' +

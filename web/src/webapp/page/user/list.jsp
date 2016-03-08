@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" />
 <html>
 <head>
@@ -15,11 +19,13 @@
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
+    <button type="button"  id="btn_add" class="btn col-sm-1 btn-outline btn-success">新增</button>
+
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>FooTable分页、排序、过滤演示</h5>
+                    <h5>个人信息列表</h5>
 
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -44,18 +50,40 @@
                             <th>性别</th>
                             <th>专项</th>
                             <th>籍贯</th>
+                            <th>食物爱好</th>
                             <th>出生年月</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach items="${userList}" var="user">
                             <tr class="gradeX">
-                                <td>${user.height}</td>
-                                <td>${user.sex}</td>
-                                <td>${user.major}</td>
+                                <td>${user.name}</td>
+                                <td>
+                                    <c:if test="${user.sex == 0}">
+                                        男
+                                    </c:if>
+                                    <c:if test="${user.sex == 1}">
+                                        女
+                                    </c:if>
+                                </td>
+                                <td class="center">${user.major}</td>
                                 <td class="center">${user.nativePlace}</td>
-                                <td class="center">
-                                    <fmt:formatDate value="${user.birthday}" type="date" dateStyle="full"/>
+                                <td >
+                                    <c:if test="${user.foodHabits == 0}">
+                                        清淡
+                                    </c:if>
+                                    <c:if test="${user.foodHabits == 1}">
+                                        偏甜
+                                    </c:if>
+                                    <c:if test="${user.foodHabits == 2}">
+                                        偏辣
+                                    </c:if>
+                                    <c:if test="${user.foodHabits == 3}">
+                                        咸辣
+                                    </c:if>
+                                </td>
+                                <td >
+                                    <fmt:formatDate value="${user.birthday}" type="date" dateStyle="long"/>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -64,7 +92,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="10">
                                 <ul class="pagination pull-right"></ul>
                             </td>
                         </tr>
@@ -92,10 +120,12 @@
 <script src="../../js/plugins/footable/footable.all.min.js"></script>
 <script  type="text/javascript">
     $(document).ready(function() {
-
+        <!-- 加载表单-->
         $('.footable').footable();
-        $('.footable2').footable();
-
+        <!-- 新增按钮点击-->
+        $("#btn_add").click(function(){
+            document.location.href="/page/user/add.jsp";
+        });
     });
 
 </script>
