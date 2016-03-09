@@ -7,7 +7,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sex != null">    sex,</if>
             <if test="name != null">    name,</if>
-            <if test="birthday != null">    birthday,</if>
+            <if test="birthday != null">    `birthday`,</if>
             <if test="nativePlace != null">    native_place,</if>
             <if test="major != null">    major,</if>
             <if test="height != null">    height,</if>
@@ -15,7 +15,7 @@
             <if test="heartRate != null">    heart_rate,</if>
             <if test="pulmonary != null">    pulmonary,</if>
             <if test="foodHabits != null">    food_habits,</if>
-            <if test="describe != null">    describe,</if>
+            <if test="describe != null">    `describe`,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sex != null">    #{sex},</if>
@@ -37,7 +37,7 @@
         <set>
             <if test="sex != null">  sex = #{sex},</if>
             <if test="name != null">  name = #{name},</if>
-            <if test="birthday != null"> birthday = #{birthday},</if>
+            <if test="birthday != null"> `birthday` = #{birthday},</if>
             <if test="nativePlace != null">  native_place = #{nativePlace},</if>
             <if test="major != null">  major = #{major},</if>
             <if test="height != null">  height = #{height},</if>
@@ -45,7 +45,7 @@
             <if test="heartRate != null"> heart_rate = #{heartRate},</if>
             <if test="pulmonary != null">  pulmonary = #{pulmonary},</if>
             <if test="foodHabits != null">  food_habits =  #{foodHabits},</if>
-            <if test="describe != null">  describe =  #{describe},</if>
+            <if test="describe != null">  `describe` =  #{describe},</if>
         </set>
         WHERE id = #{id}
     </update>

@@ -2,9 +2,12 @@ package com.wipe.healthy.web.controller;
 
 import com.wipe.healthy.core.model.User;
 import com.wipe.healthy.service.biz.UserBiz;
+import com.wipe.healthy.web.dto.AjaxResult;
 import com.wipe.healthy.web.dto.UserInput;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -35,10 +38,13 @@ public class UserController {
      * @param userInput 用户信息输入视图
      * @return
      */
-    @RequestMapping(value = "/create")
-    public String create(UserInput userInput){
+    @ResponseBody
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    public AjaxResult create(UserInput userInput){
+        AjaxResult ajaxResult = new AjaxResult(true);
         userBiz.create(userInput.convertToUser(userInput));
-        return getRoutePath()+createViewName;
+        ajaxResult.setDescription("新增用户成功");
+        return ajaxResult;
     }
 
     private final String listViewName = "list";
@@ -46,7 +52,7 @@ public class UserController {
      * 用户列表查询
      * @return
      */
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ModelAndView list(){
         List<User> userList = userBiz.list();
         ModelAndView modelAndView = new ModelAndView(getRoutePath()+listViewName);

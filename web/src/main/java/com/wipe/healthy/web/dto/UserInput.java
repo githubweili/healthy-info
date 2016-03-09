@@ -1,9 +1,10 @@
 package com.wipe.healthy.web.dto;
 
 import com.wipe.healthy.core.model.User;
-import org.springframework.beans.BeanUtils;
+import com.wipe.healty.common.utils.DateUtils;
 
 import java.util.Date;
+
 
 /**
  * 用户信息输入视图
@@ -23,7 +24,7 @@ public class UserInput {
     private Integer sex;
 
     /**用户出生年月**/
-    private Date birthday;
+    private String birthday;
 
     /**用户籍贯**/
     private String nativePlace;
@@ -65,11 +66,11 @@ public class UserInput {
         this.sex = sex;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -147,7 +148,18 @@ public class UserInput {
 
     public  User convertToUser(UserInput userInput){
         User user = new User();
-        BeanUtils.copyProperties(this,user);
+        user.setSex(userInput.getSex());
+        user.setName(userInput.getName());
+        user.setMajor(userInput.getMajor());
+        user.setHeight(userInput.getHeight());
+        user.setDescribe(userInput.getDescribe());
+        user.setFoodHabits(userInput.getFoodHabits());
+        user.setId(userInput.getId());
+        user.setHeartRate(userInput.getHeartRate());
+        user.setNativePlace(userInput.getNativePlace());
+        user.setPulmonary(userInput.getPulmonary());
+        user.setWeight(userInput.getWeight());
+        user.setBirthday(DateUtils.convertDate(userInput.getBirthday()));
         return user;
     }
 

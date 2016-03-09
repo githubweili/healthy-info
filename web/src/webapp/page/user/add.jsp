@@ -1,5 +1,11 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,6 +16,7 @@
     <link href="../../css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="../../css/animate.min.css" rel="stylesheet">
     <link href="../../css/style.min.css?v=3.2.0" rel="stylesheet">
+    <link href="../../css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
@@ -44,12 +51,12 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">姓名：</label>
                             <div class="col-sm-4 single">
-                                <input id="name" name="height" type="text" class="form-control">
+                                <input id="name" name="name" type="text" class="form-control">
                             </div>
 
                             <label class="col-sm-2 control-label">生日：</label>
                             <div class="col-sm-4 single">
-                                <input  placeholder="YYYY-MM-DD hh:mm:ss" class="form-control layer-date" onclick="laydate()">
+                                <input  placeholder="YYYY-MM-DD hh:mm:ss" name="birthday" class="form-control layer-date" onclick="laydate()">
                             </div>
                         </div>
 
@@ -162,7 +169,8 @@
     <!-- 树状js-->
     <script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
     <script src="../../js/plugins/laydate/laydate.js"></script>
-
+    <!-- Sweet alert -->
+    <script src="../../js/plugins/sweetalert/sweetalert.min.js"></script>
 
     <script  type="text/javascript">
         $(function(){
@@ -266,8 +274,8 @@
                         label.closest('.single').append(error).attr("style","float:left");
                     },
                     submitHandler : function(form) {
-                        form.submit();
-                        //ajaxSubmit();
+                        //form.submit();
+                         ajaxSubmit();
                     }
                 });
                 $('.form-horizontal input').keypress(function(e) {
@@ -292,6 +300,7 @@
         }();
 
         function ajaxSubmit(){
+
             var url = "/user/create.do";
             $.ajax({
                 type:"post",
@@ -300,13 +309,50 @@
                 data:$('#commentForm').serialize(),
                 async: false,
                 success: function(data){
-
+                    if(data.success){
+                        swal({
+                                    title: "异常",
+                                    text: data.description,
+                                    type: "success",
+                                    showCancelButton: false,
+                                    closeOnConfirm: false,
+                                    showLoaderOnConfirm: true
+                                },
+                                function(){
+                                    window.location.href = "http://localhost:8080/user/list.do";
+                                });
+                    }else{
+                      //  swalError(data);
+                    }
+                //  window.location.href = "http://localhost:8080/user/list.do";
                 },
                 error: function(){
-
+                    swal("请求异常!");
                 }
             });
         }
+
+        <!-- 成功 异常弹出框-->
+        function swalSuccess(data){
+            swal("成功",data.description, "success"),
+            function(){
+                window.location.href = "http://localhost:8080/user/list.do";
+            }
+        }
+        function swalError(data){
+            swal({
+                title: "异常",
+                text:data.description,
+                type: "info",
+                showCancelButton: false,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            }),
+            function(isConfirm){
+                 window.location.href = "http://localhost:8080/user/list.do";
+            }
+        }
+
     </script>
 </body>
 </html>
