@@ -47,6 +47,40 @@ public class UserController {
         return ajaxResult;
     }
 
+
+    private final String modifyShowViewName = "modify.jsp";
+    /**
+     * 用户信息修改查询
+     * @param id 用户信息id
+     * @return 用户信息修改视图
+     */
+    @RequestMapping(value = "/modifyShow",method = RequestMethod.GET)
+    public ModelAndView modifyShow(Integer id){
+        ModelAndView modelAndView = new ModelAndView(getRoutePath()+modifyShowViewName);
+        User user = userBiz.findById(id);
+        modelAndView.addObject(user);
+        return modelAndView;
+    }
+
+    /**
+     * 用户信息修改
+     * @param userInput 用户信息输入视图
+     * @return 异步数据
+     */
+    @RequestMapping(value = "/modify",method = RequestMethod.POST)
+    public AjaxResult modify(UserInput userInput){
+        AjaxResult ajaxResult = new AjaxResult();
+        boolean result = userBiz.update(userInput.convertToUser(userInput));
+        if (!result){
+            ajaxResult.setSuccess(false);
+            ajaxResult.setDescription("修改用户信息失败");
+        }else {
+            ajaxResult.setSuccess(true);
+            ajaxResult.setDescription("修改用户信息成功");
+        }
+        return ajaxResult;
+    }
+
     private final String listViewName = "list";
     /**
      * 用户列表查询

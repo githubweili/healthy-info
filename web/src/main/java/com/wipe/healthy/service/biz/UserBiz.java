@@ -29,6 +29,23 @@ public class UserBiz {
     }
 
     /**
+     * 通过id查找用户信息
+     * @param id 主键id
+     * @return 用户信息
+     */
+    public User findById(Integer id){
+        return userService.findById(id);
+    }
+
+    /**
+     * 修改用户信息
+     * @param user 用户信息
+     * @return 更新结果（true/false）
+     */
+    public Boolean update(User user){
+        return userService.update(user);
+    }
+    /**
      * 用户信息列表
      * @return 用户信息列表
      */
