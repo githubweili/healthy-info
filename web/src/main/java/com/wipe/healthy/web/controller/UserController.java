@@ -32,7 +32,6 @@ public class UserController {
     }
 
 
-    private final String createViewName = "list.jsp";
     /**
      * 用户信息新增
      * @param userInput 用户信息输入视图
@@ -81,6 +80,36 @@ public class UserController {
         return ajaxResult;
     }
 
+    private final String viewViewName = "view.jsp";
+
+    /**
+     * 个人信息查询
+     * @param id 主键
+     * @return 个人信息查看视图
+     */
+    @RequestMapping(value = "/view",method = RequestMethod.GET)
+    public ModelAndView view(Integer id){
+        ModelAndView modelAndView = new ModelAndView(getRoutePath()+viewViewName);
+        User user = userBiz.findById(id);
+        modelAndView.addObject(user);
+        return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete")
+    public AjaxResult delete(Integer id){
+        AjaxResult ajaxResult = new AjaxResult();
+        boolean result = userBiz.delete(id);
+        if (result){
+            ajaxResult.setSuccess(true);
+            ajaxResult.setDescription("删除用户信息成功");
+        }else {
+            ajaxResult.setSuccess(false);
+            ajaxResult.setDescription("删除用户信息异常");
+        }
+        return ajaxResult;
+    }
+    
     private final String listViewName = "list";
     /**
      * 用户列表查询

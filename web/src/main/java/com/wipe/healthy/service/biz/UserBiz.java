@@ -38,6 +38,14 @@ public class UserBiz {
     }
 
     /**
+     * 删除用户信息
+     * @param id 用户信息主键
+     * @return 删除结果（true/false）
+     */
+    public Boolean delete(Integer id){
+        return userService.delete(id);
+    }
+    /**
      * 修改用户信息
      * @param user 用户信息
      * @return 更新结果（true/false）
