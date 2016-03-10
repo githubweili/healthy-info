@@ -47,7 +47,7 @@ public class UserController {
     }
 
 
-    private final String modifyShowViewName = "modify.jsp";
+    private final String modifyShowViewName = "modify";
     /**
      * 用户信息修改查询
      * @param id 用户信息id
@@ -66,6 +66,7 @@ public class UserController {
      * @param userInput 用户信息输入视图
      * @return 异步数据
      */
+    @ResponseBody
     @RequestMapping(value = "/modify",method = RequestMethod.POST)
     public AjaxResult modify(UserInput userInput){
         AjaxResult ajaxResult = new AjaxResult();
@@ -80,7 +81,7 @@ public class UserController {
         return ajaxResult;
     }
 
-    private final String viewViewName = "view.jsp";
+    private final String viewViewName = "view";
 
     /**
      * 个人信息查询
@@ -109,7 +110,7 @@ public class UserController {
         }
         return ajaxResult;
     }
-    
+
     private final String listViewName = "list";
     /**
      * 用户列表查询

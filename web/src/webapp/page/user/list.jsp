@@ -16,6 +16,7 @@
     <link href="../../css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="../../css/animate.min.css" rel="stylesheet">
     <link href="../../css/style.min.css?v=3.2.0" rel="stylesheet">
+    <link href="../../css/plugins/footable/footable.core.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -52,6 +53,7 @@
                             <th>籍贯</th>
                             <th>食物爱好</th>
                             <th>出生年月</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -84,6 +86,10 @@
                                 </td>
                                 <td >
                                     <fmt:formatDate value="${user.birthday}" type="date" dateStyle="long"/>
+                                </td>
+                                <td>
+                                    <a href="/user/view.do?id=${user.id}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                    <a href="/user/modifyShow.do?id=${user.id}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
                                 </td>
                             </tr>
                         </c:forEach>

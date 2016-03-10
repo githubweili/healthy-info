@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,9 +14,6 @@
 </head>
 
 <body class="gray-bg">
-<div class="page-control"><a href="#" onClick="window.location.reload()">
-    <i class="glyphicon glyphicon-refresh"></i> 刷新 </a></div>
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
@@ -59,39 +57,45 @@
                     </li>
                     <li class="list-group-item">
                         食物偏好:
-                        <c:if test="${user.foodHabits ==0}">
+                        <c:if test="${user.foodHabits == 0}">
                             清淡
                         </c:if>
-                        <c:if test="${user.foodHabits ==0}">
+                        <c:if test="${user.foodHabits == 1}">
                             偏甜
                         </c:if>
-                        <c:if test="${user.foodHabits ==0}">
+                        <c:if test="${user.foodHabits == 2}">
                             偏辣
                         </c:if>
-                        <c:if test="${user.foodHabits ==0}">
+                        <c:if test="${user.foodHabits == 3}">
                             咸辣
                         </c:if>
+
                     </li>
                     <li class="list-group-item">
-                        出生年月:<fmt:formatDate value="${user.birthday}" type="date" dateStyle="long"/>
+                        出生年月:  <fmt:formatDate value="${user.birthday}" type="date" dateStyle="long"/>
+                    </li>
+                    <li class="list-group-item">
+                        说明:<textarea id="ccomment" name="describe" class="form-control" >${user.describe}</textarea>
                     </li>
                 </ul>
 
 
-                <div class="form-group">
-                    <div class="col-sm-4 ">
-                        <button class="btn btn-default" onclick="window.history.go(-1)">
-                            取消
-                        </button>
-                    </div>
-                    <div class="col-sm-4 ">
-                        <button class="btn btn-primary" type="submit" onclick="ajaxDelete();">
-                            <i class="fa fa-check"></i>
-                            删除
-                        </button>
-                    </div>
-                </div>
 
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <button class="btn btn-default" onclick="window.history.go(-1)">
+                        <i class="fa fa-check"></i>
+                        取消
+                    </button>
+                </div>
+                <div class="col-sm-4 ">
+                    <button class="btn btn-success active" type="submit" onclick="ajaxDelete();">
+                        <i class="fa fa-check"></i>
+                        删除
+                    </button>
+                </div>
             </div>
         </div>
     </div>

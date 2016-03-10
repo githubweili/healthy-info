@@ -337,9 +337,9 @@
     <!-- 成功 异常弹出框-->
     function swalSuccess(data) {
         swal({
-                    title: "异常",
+                    title: "成功",
                     text: data.description,
-                    type: "error",
+                    type: "success",
                     howCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
@@ -352,7 +352,7 @@
         swal({
                     title: "异常",
                     text: data.description,
-                    type: "success",
+                    type: "error",
                     showCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true

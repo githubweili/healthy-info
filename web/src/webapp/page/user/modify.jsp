@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -25,6 +26,8 @@
         <div class="col-sm-12">
             <div class="ibox-content">
                 <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
+
+                    <input name="id" value="${user.id}" style="display:none;">
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">专项：</label>
@@ -60,14 +63,14 @@
                         <label class="col-sm-2 control-label">姓名：</label>
 
                         <div class="col-sm-4 single">
-                            <input id="name" name="name" type="text" class="form-control" value="user.name">
+                            <input id="name" name="name" type="text" class="form-control" value="${user.name}">
                         </div>
 
                         <label class="col-sm-2 control-label">生日：</label>
 
                         <div class="col-sm-4 single">
                             <input placeholder="YYYY-MM-DD hh:mm:ss" name="birthday" class="form-control layer-date"
-                                   onclick="laydate()" value='<fmt:formatDate value="${user.birthday}" type="date" dateStyle="long"/>'>
+                                   onclick="laydate()" value='<fmt:formatDate value="${user.birthday}" type="date" dateStyle="default"/>'>
 
                         </div>
                     </div>
@@ -354,9 +357,9 @@
     <!-- 成功 异常弹出框-->
     function swalSuccess(data) {
         swal({
-                    title: "异常",
+                    title: "成功",
                     text: data.description,
-                    type: "error",
+                    type: "success",
                     howCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
@@ -365,11 +368,12 @@
                     window.location.href = "http://localhost:8080/user/list.do";
                 });
     }
+
     function swalError(data) {
         swal({
                     title: "异常",
                     text: data.description,
-                    type: "success",
+                    type: "error",
                     showCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
