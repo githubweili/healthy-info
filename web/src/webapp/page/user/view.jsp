@@ -11,6 +11,7 @@
     <link href="../../css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="../../css/animate.min.css" rel="stylesheet">
     <link href="../../css/style.min.css?v=3.2.0" rel="stylesheet">
+    <link href="../../css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
@@ -103,21 +104,33 @@
 </div>
 
 
+
 <!-- 全局js -->
 <script src="../../js/jquery-2.1.1.min.js"></script>
 <script src="../../js/bootstrap.min.js?v=3.4.0"></script>
 
 <!-- 自定义js -->
 <script src="../../js/content.min.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="../../js/plugins/validate/jquery.validate.min.js"></script>
+
+<!-- 树状js-->
+<script src="../../js/plugins/treeview/bootstrap-treeview.js"></script>
+<script src="../../js/plugins/laydate/laydate.js"></script>
+<!-- Sweet alert -->
+<script src="../../js/plugins/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
 
     <!-- 异步请求表单提交-->
     function ajaxDelete() {
-        var url = "/user/delete.do";
+        var id = ${user.id};
+        var url = "http://localhost:8080/user/delete.do";
         $.ajax({
-            type: "get",
+            type: "post",
             url: url,
             dataType: "json",
+            data:{id:id},
             async: false,
             success: function (data) {
                 if (data.success) {
@@ -135,9 +148,9 @@
     <!-- 成功 异常弹出框-->
     function swalSuccess(data) {
         swal({
-                    title: "异常",
+                    title: "成功",
                     text: data.description,
-                    type: "error",
+                    type: "success",
                     howCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
@@ -150,7 +163,7 @@
         swal({
                     title: "异常",
                     text: data.description,
-                    type: "success",
+                    type: "error",
                     showCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true

@@ -97,7 +97,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public AjaxResult delete(Integer id){
         AjaxResult ajaxResult = new AjaxResult();
         boolean result = userBiz.delete(id);
