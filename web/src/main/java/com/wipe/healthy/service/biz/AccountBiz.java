@@ -105,13 +105,13 @@ public class AccountBiz {
     public void loginWrite(Account account,HttpServletRequest request){
         //写入数据库
         Account dbAccount = accountService.findByName(account.getEnglishName());
-        account.setLoginCount(dbAccount.getLoginCount()+1);
-        account.setLoginTime(new Date());
-        account.setLoginIp(HttpUtils.getRemoteAddress(request));
+        dbAccount.setLoginCount(dbAccount.getLoginCount()+1);
+        dbAccount.setLoginTime(new Date());
+        dbAccount.setLoginIp(HttpUtils.getRemoteAddress(request));
         accountService.update(account);
 
         //写入session
         HttpSession session = request.getSession();
-        session.setAttribute("account",account);
+        session.setAttribute("account",dbAccount);
     }
 }
