@@ -3,6 +3,8 @@ package com.wipe.healthy.web.dto;
 import com.wipe.healthy.core.model.Account;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Date;
+
 /**
  * 账户信息输入视图
  * User:Created by wei.li
@@ -13,14 +15,29 @@ public class AccountInput {
     /**用户主键**/
     private Integer id;
 
-    /**用户信息主键**/
-    private Integer userId;
-
     /**用户登录名**/
     private String englishName;
 
     /**用户登陆密码**/
     private String password;
+
+    /** 登陆次数 **/
+    private Integer loginCount;
+
+    /** 登陆IP**/
+    private String loginIp;
+
+    /**联系  QQ **/
+    private String qq;
+
+    /**描叙信息**/
+    private String describes;
+
+    /** 前台验证码 */
+    private String verification;
+
+    /** 最后登陆时间 **/
+    private Date loginTime;
 
     /**用户授权信息**/
     private String authorithy;
@@ -31,14 +48,6 @@ public class AccountInput {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getEnglishName() {
@@ -63,6 +72,54 @@ public class AccountInput {
 
     public void setAuthorithy(String authorithy) {
         this.authorithy = authorithy;
+    }
+
+    public Integer getLoginCount() {
+        return loginCount;
+    }
+
+    public void setLoginCount(Integer loginCount) {
+        this.loginCount = loginCount;
+    }
+
+    public String getLoginIp() {
+        return loginIp;
+    }
+
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp;
+    }
+
+    public Date getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getDescribes() {
+        return describes;
+    }
+
+    public void setDescribes(String describes) {
+        this.describes = describes;
+    }
+
+    public String getVerification() {
+        return verification;
+    }
+
+    public void setVerification(String verification) {
+        this.verification = verification;
     }
 
     public Account convertToAccount(){

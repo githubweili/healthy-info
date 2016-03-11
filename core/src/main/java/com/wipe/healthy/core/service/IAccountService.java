@@ -43,6 +43,12 @@ public interface IAccountService {
      */
     Account findById(Integer id);
 
+    /**
+     * 根据登陆名查找账户
+     * @param englishName 登陆名
+     * @return 账号信息
+     */
+    Account findByName(String englishName);
 
     /**
      * 根据条件查询账户信息

@@ -1,12 +1,15 @@
 package com.wipe.healthy.web.controller;
 
+import com.wipe.healthy.core.model.Account;
 import com.wipe.healthy.service.biz.AccountBiz;
 import com.wipe.healthy.web.dto.AccountInput;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 账号控制器
@@ -63,14 +66,16 @@ public class AccountController {
         return getRoutePath()+deleteViewName;
     }
 
-    private final String listViewName = "list.jsp";
+    private final String listViewName = "list";
     /**
      * 查询账户列表
      * @return
      */
     @RequestMapping(value = "/list")
-    public String list(){
-        accountBiz.list(new HashMap<String, Object>());
-        return getRoutePath()+listViewName;
+    public ModelAndView list(){
+        ModelAndView modelAndView = new ModelAndView(getRoutePath()+listViewName);
+        List<Account> accountList = accountBiz.list(new HashMap<String, Object>());
+        modelAndView.addObject(accountList);
+        return modelAndView;
     }
 }

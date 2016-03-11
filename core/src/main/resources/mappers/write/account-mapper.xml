@@ -5,15 +5,19 @@
     <insert id="create" parameterType="com.wipe.healthy.core.model.Account" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO account
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="userId != null">  user_id,</if>
             <if test="englishName != null">  english_name,</if>
             <if test="password != null">  password,</if>
+            <if test="loginCount != null">  login_count,</if>
+            <if test="loginIp != null">  login_ip,</if>
+            <if test="loginTime != null">  login_time,</if>
             <if test="authorithy != null">  authorithy,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="userId != null">  #{userId},</if>
             <if test="englishName != null">  #{englishName},</if>
             <if test="password != null">  #{password},</if>
+            <if test="loginCount != null">  #{loginCount},</if>
+            <if test="loginIp != null">  #{loginIp},</if>
+            <if test="loginTime != null">  #{loginTime},</if>
             <if test="authorithy != null">  #{authorithy},</if>
         </trim>
     </insert>
@@ -22,9 +26,11 @@
     <update id="update" parameterType="com.wipe.healthy.core.model.Account">
         UPDATE account
         <set>
-            <if test="userId != null">  user_id = #{userId},</if>
             <if test="englishName != null">  english_name = #{englishName},</if>
             <if test="password != null">  password = #{password},</if>
+            <if test="loginCount != null">  login_count = #{loginCount},</if>
+            <if test="loginIp != null">  login_ip = #{loginIp},</if>
+            <if test="loginTime != null">  login_time = #{loginTime},</if>
             <if test="authorithy != null">  authorithy = #{authorithy},</if>
         </set>
         WHERE id = #{id}

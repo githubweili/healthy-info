@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>用户个人信息录入</title>
+    <title>登陆账号录入</title>
     <link href="../../css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
     <link href="../../css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="../../css/animate.min.css" rel="stylesheet">
@@ -26,121 +26,36 @@
                 <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">专项：</label>
-
+                        <label class="col-sm-2 control-label">账户：</label>
                         <div class="col-sm-4 single">
-                            <input id="major" name="major" type="text" class="form-control">
+                            <input id="englishName" name="englishName" type="text" class="form-control">
                         </div>
-                        <label class="col-sm-2 control-label">性别：</label>
-
-                        <div class="col-sm-4 form-inline">
-                            <div class="radio">
-                                <label>
-                                    <input id="man" type="radio" value="0" name="sex" checked>
-                                    男
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input id="woman" type="radio" value="1" name="sex">
-                                    女
-                                </label>
-                            </div>
+                        <label class="col-sm-2 control-label">密码：</label>
+                        <div class="col-sm-4 single">
+                            <input id="password" name="password" type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名：</label>
-
-                        <div class="col-sm-4 single">
-                            <input id="name" name="name" type="text" class="form-control">
-                        </div>
-
-                        <label class="col-sm-2 control-label">生日：</label>
-
-                        <div class="col-sm-4 single">
-                            <input placeholder="YYYY-MM-DD hh:mm:ss" name="birthday" class="form-control layer-date"
-                                   onclick="laydate()">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">身高：</label>
-
-                        <div class="col-sm-4 single">
-                            <input id="height" name="height" type="text" class="form-control">
-                        </div>
-                        <label class="col-sm-2 control-label">体重：</label>
-
-                        <div class="col-sm-4 single">
-                            <input id="weight" name="weight" type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">心率：</label>
-
-                        <div class="col-sm-4 single">
-                            <input id="heartRate" name="heartRate" type="text" class="form-control">
-                        </div>
-                        <label class="col-sm-2 control-label">肺活量：</label>
-
-                        <div class="col-sm-4 single">
-                            <input id="pulmonary" name="pulmonary" type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">籍贯：</label>
-
-                        <div class="col-sm-4 single">
-                            <div class="input-group">
-                                <input id="nativePlace" name="nativePlace" type="text"
-                                       class="form-control" onclick="showCity();">
-                                    <span class="input-group-addon " onclick="showCity();">
-                                        <span class="fa fa-circle-o-notch"></span>
-                                    </span>
-                            </div>
-
-                        </div>
-
-                        <label class="col-sm-2 control-label">食物习惯：</label>
-
+                        <label class="col-sm-2 control-label">角色：</label>
                         <div class="col-sm-4">
-                            <select class="form-control m-b" name="foodHabits">
-                                <option value="0">辣</option>
-                                <option value="1">甜</option>
-                                <option value="2">咸</option>
-                                <option value="3">淡</option>
+                            <select class="form-control m-b" name="authorithy">
+                                <option value="管理员">管理员</option>
+                                <option value="普通用户">普通用户</option>
                             </select>
                         </div>
-                    </div>
 
-
-                    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content animated bounceInRight">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span
-                                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title">城市选择</h4>
-                                    <small>请选择您所在的城市。</small>
-                                </div>
-                                <div class="modal-body" style="overflow: scroll;height: 400px;overflow-x: hidden">
-                                    <div class="ibox-content">
-                                        <div id="treeview" class="test"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <label class="col-sm-2 control-label">联系QQ：</label>
+                        <div class="col-sm-4 single">
+                            <input id="qq" name="qq" type="text" class="form-control">
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">说明：</label>
 
                         <div class="col-sm-10">
-                            <textarea id="ccomment" name="describe" class="form-control"></textarea>
+                            <textarea id="describes" name="describes" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -227,53 +142,34 @@
                 errorClass: 'help-block',
                 focusInvalid: false,
                 rules: {
-                    "name": {
+                    "englishName": {
                         required: true
                     },
-                    "height": {
-                        required: true,
-                        number: true
-                    },
-                    "weight": {
-                        required: true,
-                        number: true
-                    },
-                    "heartRate": {
-                        required: true,
-                        number: true
-                    },
-                    "pulmonary": {
-                        required: true,
-                        number: true
-                    },
-                    "nativePlace": {
+                    "password": {
                         required: true
+                    },
+                    "authorithy": {
+                        required: true
+                    },
+                    "qq": {
+                        required: true,
+                        number: true
                     }
                 },
                 messages: {
-                    "name": {
-                        required: "姓名不能为空."
+                    "englishName": {
+                        required: "账户不能为空."
                     },
-                    "height": {
-                        required: "身高不能为空.",
-                        number: "请输入合法数字"
+                    "password": {
+                        required: "密码不能为空."
                     },
-                    "weight": {
-                        required: "体重不能为空.",
-                        number: "请输入合法数字"
+                    "authorithy": {
+                        required: "角色不能为空."
                     },
                     "heartRate": {
-                        required: "心率不能为空.",
-                        number: "请输入合法数字"
-                    },
-                    "pulmonary": {
-                        required: "肺活量不能为空.",
-                        number: "请输入合法数字"
-                    },
-                    "nativePlace": {
-                        required: "籍贯不能为空."
+                        required: "QQ不能为空.",
+                        number: "请输入合法QQ号"
                     }
-
                 },
                 highlight: function (element) {
                     $(element).closest('.single').addClass('has-error');
@@ -309,7 +205,7 @@
         laydate.skin('danlan');
         laydate({
             elem: '#demo',
-            format: ' hh:mm:ss'
+            format: 'hh:mm:ss'
         })
     }();
 

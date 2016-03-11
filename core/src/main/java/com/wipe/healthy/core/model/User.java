@@ -13,6 +13,9 @@ public class User {
     /** 用户信息主键**/
     private Integer id;
 
+    /** 账户主键**/
+    private Integer accountId;
+
     /**用户性别**/
     private Integer sex;
 
@@ -142,6 +145,14 @@ public class User {
         this.name = name;
     }
 
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,6 +160,7 @@ public class User {
 
         User user = (User) o;
 
+        if (accountId != null ? !accountId.equals(user.accountId) : user.accountId != null) return false;
         if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null) return false;
         if (describe != null ? !describe.equals(user.describe) : user.describe != null) return false;
         if (foodHabits != null ? !foodHabits.equals(user.foodHabits) : user.foodHabits != null) return false;
@@ -168,6 +180,7 @@ public class User {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (accountId != null ? accountId.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
@@ -186,6 +199,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", accountId=" + accountId +
                 ", sex=" + sex +
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +

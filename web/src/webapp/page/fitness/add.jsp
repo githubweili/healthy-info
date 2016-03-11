@@ -26,20 +26,24 @@
                         <form id="form" action="form_wizard.html#" class="wizard-big">
                             <h1>健身行为</h1>
                             <fieldset>
-                                <h2>账户信息</h2>
+                                <h2>健身行为录入</h2>
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="form-group">
-                                            <label>用户名 *</label>
+                                            <label>行为名称 *</label>
                                             <input id="userName" name="userName" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
-                                            <label>密码 *</label>
+                                            <label>行为类型 *</label>
                                             <input id="password" name="password" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
-                                            <label>确认密码 *</label>
+                                            <label>行为适用人群 *</label>
                                             <input id="confirm" name="confirm" type="text" class="form-control required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>消耗卡路里 *</label>
+                                            <input id="" name="confirm" type="text" class="form-control required">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -52,9 +56,9 @@
                                 </div>
 
                             </fieldset>
-                            <h1>行为信息</h1>
+                            <h1>健身行为详情</h1>
                             <fieldset>
-                                <h2>个人资料信息</h2>
+                                <h2>行为详情录入</h2>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -70,6 +74,17 @@
                                         <div class="form-group">
                                             <label>地址 *</label>
                                             <input id="address" name="nativePlace" type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>天气 *</label>
+                                            <input id="" name="email" type="text" class="form-control required email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>气温 *</label>
+                                            <input id="" name="nativePlace" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -98,16 +113,10 @@
     <!-- 全局js -->
     <script src="../../js/jquery-2.1.1.min.js"></script>
     <script src="../../js/bootstrap.min.js?v=3.4.0"></script>
-
-
-
     <!-- 自定义js -->
     <script src="../../js/content.min.js?v=1.0.0"></script>
-
-
     <!-- Steps -->
     <script src="../../js/plugins/staps/jquery.steps.min.js"></script>
-
     <!-- Jquery Validate -->
     <script src="../../js/plugins/validate/jquery.validate.min.js"></script>
     <script src="../../js/plugins/validate/messages_zh.min.js"></script>
@@ -154,8 +163,8 @@
         });
     </script>
 
-    <script type="text/javascript" src="../../../tajs.qq.com/stats@sId=9051096.html" charset="UTF-8"></script>
-    <!--统计代码，可删除-->
+
+
 
 </body>
 </html>

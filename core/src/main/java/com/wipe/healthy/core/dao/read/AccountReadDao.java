@@ -10,4 +10,10 @@ import com.wipe.healthy.core.model.Account;
  */
 public interface AccountReadDao extends BaseReadDao<Account>{
 
+    /**
+     * 根据登陆名查找账户
+     * @param englishName 登陆名
+     * @return 账号信息
+     */
+    public Account findByName(String englishName);
 }

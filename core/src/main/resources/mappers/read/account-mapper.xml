@@ -3,7 +3,7 @@
 <mapper namespace="com.wipe.healthy.core.dao.read.AccountReadDao">
 
     <sql id="account">
-        id,user_id,english_name,password,authorithy
+        id,english_name,password,login_count,login_ip,login_time,authorithy
     </sql>
 
     <select id="findById" parameterType="java.lang.Integer" resultType="com.wipe.healthy.core.model.Account">
@@ -18,6 +18,14 @@
         <include refid="account"/>
         FROM account
     </select>
+
+    <select id="findByName" parameterType="java.lang.String" resultType="com.wipe.healthy.core.model.Account">
+        SELECT
+        <include refid="account"/>
+        FROM account
+        WHERE english_name = #{englishName}
+    </select>
+
 
     <select id="batchQuery" parameterType="java.util.HashSet" resultType="com.wipe.healthy.core.model.Account">
         SELECT

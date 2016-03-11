@@ -2,9 +2,14 @@ package com.wipe.healthy.service.biz;
 
 import com.wipe.healthy.core.model.Account;
 import com.wipe.healthy.core.service.IAccountService;
+import com.wipe.healty.common.utils.EncryptUtil;
+import com.wipe.healty.common.utils.HttpUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -74,5 +79,39 @@ public class AccountBiz {
      */
     public List<Account> batchQuery(Set<Integer> ids){
         return accountService.batchQuery(ids);
+    }
+
+
+    /**
+     * 登陆验证方法
+     * @param account 账户信息
+     * @return 是否成功（true/false）
+     */
+    public boolean login(Account account){
+        Account dbAccount = accountService.findByName(account.getEnglishName());
+        String enctrPassword = EncryptUtil.MD5Hex(account.getPassword());
+        if(dbAccount.getPassword().equals(enctrPassword)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    /**
+     * 写入登陆参数
+     * @param account 登陆账号
+     * @param request 请求参数
+     */
+    public void loginWrite(Account account,HttpServletRequest request){
+        //写入数据库
+        Account dbAccount = accountService.findByName(account.getEnglishName());
+        account.setLoginCount(dbAccount.getLoginCount()+1);
+        account.setLoginTime(new Date());
+        account.setLoginIp(HttpUtils.getRemoteAddress(request));
+        accountService.update(account);
+
+        //写入session
+        HttpSession session = request.getSession();
+        session.setAttribute("account",account);
     }
 }
