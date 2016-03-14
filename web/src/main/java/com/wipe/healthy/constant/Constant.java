@@ -10,4 +10,10 @@ public class Constant {
 
     /** 拥有叶子节点的状态**/
     public static final Integer OWN_LEAF = 0;
+
+    /** 图表X轴轴点数**/
+    public static final Integer CHART_X_NUM = 6;
+
+    /** 图表Y轴轴点数**/
+    public static final Integer CHART_Y_NUM = 5;
 }

@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox-content">
-                <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
+                <form class="form-horizontal m-t " id="commentForm" action="/user/create.do">
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">专项：</label>

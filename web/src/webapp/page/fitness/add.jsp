@@ -11,6 +11,8 @@
     <link href="../../css/plugins/steps/jquery.steps.css" rel="stylesheet">
     <link href="../../css/animate.min.css" rel="stylesheet">
     <link href="../../css/style.min.css?v=3.2.0" rel="stylesheet">
+    <link href="../../css/DateTimePicker.css" rel="stylesheet">
+    <link href="../../css/date.css" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
@@ -43,7 +45,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>消耗卡路里 *</label>
-                                            <input id="" name="confirm" type="text" class="form-control required">
+                                            <input id="calorie" name="calorie" type="text" class="form-control required">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -59,49 +61,55 @@
                             <h1>健身行为详情</h1>
                             <fieldset>
                                 <h2>行为详情录入</h2>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>姓名 *</label>
-                                            <input id="name" name="major" type="text" class="form-control required">
+                                <div class="row ">
+                                    <div class="col-sm-8">
+                                        <div    class="form-group">
+                                            <label>行为日期 *</label>
+                                            <input type="text"  id="date-input"  class="form-control required" name="beginTime">
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Email *</label>
-                                            <input id="email" name="email" type="text" class="form-control required email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>地址 *</label>
-                                            <input id="address" name="nativePlace" type="text" class="form-control">
-                                        </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
+                                        <div id="timePicker " class="form-group">
+                                            <label>开始时间 *</label>
+                                            <input type="text" data-field="time" class="form-control required" name="beginTime">
+                                        </div>
+                                        <div id="dtBox"></div>
+
+                                        <div id="timePickers " class="form-group">
+                                            <label>开始时间 *</label>
+                                            <input type="text" data-field="time" class="form-control required" name="beginTime">
+                                        </div>
+                                        <div id="dtBoxs"></div>
+
                                         <div class="form-group">
                                             <label>天气 *</label>
-                                            <input id="" name="email" type="text" class="form-control required email">
+                                            <input id="weather" name="weather" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
                                             <label>气温 *</label>
-                                            <input id="" name="nativePlace" type="text" class="form-control">
+                                            <input id="temperature" name="temperature" type="text" class="form-control required">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-center">
+                                            <div style="margin-top: 20px">
+                                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
 
-                            <h1>警告</h1>
+                            <h1>友情提示</h1>
                             <fieldset>
                                 <div class="text-center" style="margin-top: 120px">
-                                    <h2>你是火星人 :-)</h2>
+                                    <h2>您录入的信息本系统将有权分析以及分享，感谢！ :-)</h2>
                                 </div>
                             </fieldset>
 
                             <h1>完成</h1>
                             <fieldset>
-                                <h2>条款</h2>
-                                <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required">
-                                <label for="acceptTerms">我同意注册条款</label>
+                                <h2>您的信息录入完成，感谢您对本系统的支持</h2>
                             </fieldset>
                         </form>
                     </div>
@@ -120,7 +128,8 @@
     <!-- Jquery Validate -->
     <script src="../../js/plugins/validate/jquery.validate.min.js"></script>
     <script src="../../js/plugins/validate/messages_zh.min.js"></script>
-
+    <script src="../../js/date.js"></script>
+    <script src="../../js/DateTimePicker.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -159,7 +168,47 @@
                         equalTo:"#password"
                 }
                 }
-            })
+            });
+
+            $("#dtBox").DateTimePicker(
+                    {
+                        addEventHandlers : function() {
+                            var dtPickerObj = this;
+                            $(
+                                    "#datePicker .pickerButton")
+                                    .click(
+                                    function(
+                                            e) {
+                                        e
+                                                .stopPropagation();
+                                        dtPickerObj
+                                                .showDateTimePicker($("#datePicker input"));
+                                    });
+
+                            $(
+                                    "#timePicker .pickerButton")
+                                    .click(
+                                    function(
+                                            e) {
+                                        e
+                                                .stopPropagation();
+                                        dtPickerObj
+                                                .showDateTimePicker($("#timePicker input"));
+                                    });
+
+                            $(
+                                    "#dateTimePicker .pickerButton")
+                                    .click(
+                                    function(
+                                            e) {
+                                        e
+                                                .stopPropagation();
+                                        dtPickerObj
+                                                .showDateTimePicker($("#dateTimePicker input"));
+                                    });
+                        }
+
+                    });
         });
     </script>
 
