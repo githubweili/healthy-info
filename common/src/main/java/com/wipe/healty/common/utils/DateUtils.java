@@ -809,4 +809,21 @@ public class DateUtils {
         }
         return hour;
     }
+
+    /**
+     * @param
+     * @return 返回java.sql.Time格式的
+     * */
+    public static Time strToTime(String strDate) {
+        String str = strDate;
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+        java.util.Date d = null;
+        try {
+            d = format.parse(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        java.sql.Time time = new java.sql.Time(d.getTime());
+        return time.valueOf(str);
+    }
 }

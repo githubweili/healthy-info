@@ -25,7 +25,7 @@
                             健身信息向导
                         </h2>
 
-                        <form id="form" action="form_wizard.html#" class="wizard-big">
+                        <form id="form" action="/fitness/create.do" class="wizard-big">
                             <h1>健身行为</h1>
                             <fieldset>
                                 <h2>健身行为录入</h2>
@@ -33,15 +33,19 @@
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                             <label>行为名称 *</label>
-                                            <input id="userName" name="userName" type="text" class="form-control required">
+                                            <input id="actionName" name="actionName" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
                                             <label>行为类型 *</label>
-                                            <input id="password" name="password" type="text" class="form-control required">
+                                            <select class="form-control required" name="style">
+                                                <option value="0">有氧行为</option>
+                                                <option value="1">无养行为</option>
+                                                <option value="2">耐力行为</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>行为适用人群 *</label>
-                                            <input id="confirm" name="confirm" type="text" class="form-control required">
+                                            <input id="fitPeople" name="fitPeople" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
                                             <label>消耗卡路里 *</label>
@@ -65,7 +69,7 @@
                                     <div class="col-sm-8">
                                         <div    class="form-group">
                                             <label>行为日期 *</label>
-                                            <input type="text"  id="date-input"  class="form-control required" name="beginTime">
+                                            <input type="text"  id="date-input"  class="form-control required" name="data">
                                         </div>
 
                                         <div id="timePicker " class="form-group">
@@ -76,7 +80,7 @@
 
                                         <div id="timePickers " class="form-group">
                                             <label>开始时间 *</label>
-                                            <input type="text" data-field="time" class="form-control required" name="beginTime">
+                                            <input type="text" data-field="time" class="form-control required" name="endTime">
                                         </div>
                                         <div id="dtBoxs"></div>
 

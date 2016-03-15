@@ -8,11 +8,11 @@ import com.wipe.healthy.core.service.IFitnessActionService;
 import com.wipe.healthy.web.dto.FitnessOutput;
 import com.wipe.healty.common.utils.LangUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +36,7 @@ public class FitnessBiz {
      * @return 新增健身信息主键
      */
 
-    @Transactional
+    @Transactional(readOnly = false,propagation = Propagation.REQUIRED)
     public boolean create(FitnessAction fitnessAction,ActionInfo actionInfo){
         this.fitnessActionService.create(fitnessAction);
         this.actionInfoService.create(actionInfo);

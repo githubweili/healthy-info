@@ -4,6 +4,11 @@ import com.wipe.healthy.core.model.ActionInfo;
 import com.wipe.healthy.core.model.FitnessAction;
 import com.wipe.healty.common.utils.DateUtils;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 
 /**
  *健身信息输入视图
@@ -145,8 +150,8 @@ public class FitnessInput {
     public ActionInfo convertToActionInfo(){
         ActionInfo actionInfo = new ActionInfo();
         actionInfo.setActionId(this.id);
-        actionInfo.setBeginTime(DateUtils.convertDate(this.beginTime));
-        actionInfo.setEndTime(DateUtils.convertDate(this.endTime));
+        actionInfo.setBeginTime(DateUtils.strToTime(this.beginTime+":00"));
+        actionInfo.setEndTime(Time.valueOf(this.endTime+":00"));
         actionInfo.setData(DateUtils.convertDate(this.data));
         actionInfo.setTemperature(this.temperature);
         actionInfo.setWeather(this.weather);

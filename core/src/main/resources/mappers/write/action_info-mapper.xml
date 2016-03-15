@@ -8,7 +8,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId != null">  user_id,</if>
             <if test="actionId != null">  action_id,</if>
-            <if test="data != null">  date,</if>
+            <if test="data != null">  `data`,</if>
             <if test="beginTime != null">  begin_time,</if>
             <if test="endTime != null">  end_time,</if>
             <if test="weather != null">  weather,</if>
@@ -31,7 +31,7 @@
         <set>
             <if test="userId != null">  user_id = #{userId},</if>
             <if test="actionId != null">  action_id = #{actionId},</if>
-            <if test="data != null">  date = #{data},</if>
+            <if test="data != null">  `data` = #{data},</if>
             <if test="beginTime != null">  begin_time = #{beginTime},</if>
             <if test="endTime != null">  end_time = #{endTime},</if>
             <if test="weather != null">  weather = #{weather},</if>

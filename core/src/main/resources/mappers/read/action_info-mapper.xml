@@ -4,7 +4,7 @@
 
 
     <sql id="action_info">
-        id,user_id,action_id,date,begin_time,end_time,weather,temperature
+        id,user_id,action_id,`data`,begin_time,end_time,weather,temperature
     </sql>
 
 

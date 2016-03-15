@@ -1,5 +1,7 @@
 package com.wipe.healthy.core.model;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -23,16 +25,18 @@ public class ActionInfo {
     private Date data;
 
     /**健身行为开始时间**/
-    private Date beginTime;
+    private Time beginTime;
 
     /**健身行为结束时间**/
-    private Date endTime;
+    private Time endTime;
 
     /**健身行为当天天气**/
     private Integer weather;
 
     /**健身行为当天气温**/
     private Float temperature;
+
+
 
 
     public Integer getId() {
@@ -67,20 +71,20 @@ public class ActionInfo {
         this.data = data;
     }
 
-    public Date getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public Date getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
+    }
+
+    public Time getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(Time beginTime) {
+        this.beginTime = beginTime;
     }
 
     public Integer getWeather() {
