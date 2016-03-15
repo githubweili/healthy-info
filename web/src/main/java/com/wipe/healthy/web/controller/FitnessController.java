@@ -1,0 +1,106 @@
+package com.wipe.healthy.web.controller;
+
+import com.wipe.healthy.service.biz.FitnessBiz;
+import com.wipe.healthy.web.dto.AjaxResult;
+import com.wipe.healthy.web.dto.FitnessInput;
+import com.wipe.healthy.web.dto.FitnessOutput;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * 健身信息控制层
+ * User:Created by wei.li
+ * Date: on 2016/3/14.
+ * Time:23:28
+ */
+@Controller
+@RequestMapping(value = "/fitness")
+public class FitnessController {
+    @Resource
+    FitnessBiz fitnessBiz;
+
+    protected static Logger logger = LoggerFactory.getLogger(FitnessController.class);
+
+
+    public String getRoutePath() {
+        return "../page/fitness/";
+    }
+    /**
+     * 新增健身信息
+     * @param fitnessInput 健身信息输入视图
+     * @return 新增结果
+     */
+    @ResponseBody
+    @RequestMapping(value ="/create" )
+    public AjaxResult create(FitnessInput fitnessInput){
+        AjaxResult ajaxResult = new AjaxResult();
+        try {
+            fitnessBiz.create(fitnessInput.convertToFitnessAction(),
+                    fitnessInput.convertToActionInfo());
+            ajaxResult.setSuccess(true);
+            ajaxResult.setDescription("新增健身信息成功");
+        } catch (Exception e) {
+            ajaxResult.setSuccess(false);
+            ajaxResult.setDescription("新增健身信息异常");
+            logger.error("新增健身信息异常",e);
+        }
+        return ajaxResult;
+    }
+
+    /**
+     * 修改健身信息
+     * @param fitnessInput 健身信息输入视图
+     * @return 修改结果
+     */
+    @ResponseBody
+    @RequestMapping(value = "/update")
+    public AjaxResult modify(FitnessInput fitnessInput){
+        AjaxResult ajaxResult = new AjaxResult();
+        try {
+            fitnessBiz.update(fitnessInput.convertToFitnessAction(),
+                    fitnessInput.convertToActionInfo());
+            ajaxResult.setSuccess(true);
+            ajaxResult.setDescription("修改健身信息成功");
+        } catch (Exception e) {
+            ajaxResult.setSuccess(false);
+            ajaxResult.setDescription("修改健身信息异常");
+            logger.error("修改健身信息异常",e);
+        }
+        return ajaxResult;
+    }
+
+    private final String viewViewName = "view";
+    /**
+     * 健身信息查看
+     * @param id 健身信息主键
+     * @return 查询视图
+     */
+    @RequestMapping(value = "/view")
+    public ModelAndView view(Integer id){
+        ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+viewViewName);
+        FitnessOutput fitnessOutput = fitnessBiz.findById(id);
+        modelAndView.addObject(fitnessOutput);
+        return modelAndView;
+    }
+
+
+    private final String listViewName = "list";
+    /**
+     *健身信息列表查询
+     * @return 查询列表
+     */
+    @RequestMapping(value = "/list")
+    public ModelAndView list(){
+        ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+listViewName);
+        List<FitnessOutput> fitnessOutputList = fitnessBiz.list();
+        modelAndView.addObject(fitnessOutputList);
+        return modelAndView;
+    }
+}
