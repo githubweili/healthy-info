@@ -18,7 +18,10 @@ import java.text.SimpleDateFormat;
  */
 public class FitnessInput {
     /**健身行为id**/
-    private Integer id;
+    private Integer fitnessId;
+
+    /** 詳情id**/
+    private Integer actionId;
 
     /**健身行为名称**/
     private String actionName;
@@ -50,12 +53,20 @@ public class FitnessInput {
     /**健身行为当天气温**/
     private Float temperature;
 
-    public Integer getId() {
-        return id;
+    public Integer getFitnessId() {
+        return fitnessId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setFitnessId(Integer fitnessId) {
+        this.fitnessId = fitnessId;
+    }
+
+    public Integer getActionId() {
+        return actionId;
+    }
+
+    public void setActionId(Integer actionId) {
+        this.actionId = actionId;
     }
 
     public String getActionName() {
@@ -144,12 +155,13 @@ public class FitnessInput {
         fitnessAction.setCalorie(this.calorie);
         fitnessAction.setFitPeople(this.fitPeople);
         fitnessAction.setStyle(this.style);
+        fitnessAction.setId(this.fitnessId);
         return fitnessAction;
     }
 
     public ActionInfo convertToActionInfo(){
         ActionInfo actionInfo = new ActionInfo();
-        actionInfo.setActionId(this.id);
+        actionInfo.setActionId(this.actionId);
         actionInfo.setBeginTime(DateUtils.strToTime(this.beginTime+":00"));
         actionInfo.setEndTime(Time.valueOf(this.endTime+":00"));
         actionInfo.setData(DateUtils.convertDate(this.data));

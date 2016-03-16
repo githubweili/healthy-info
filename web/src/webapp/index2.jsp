@@ -63,6 +63,9 @@
                             <a class="J_menuItem" href="page/fitness/add.jsp">健身信息录入</a>
                         </li>
                         <li>
+                            <a class="J_menuItem" href="fitness/list.do">健身信息录入</a>
+                        </li>
+                        <li>
                             <a class="J_menuItem" href="page/user/add.jsp">信息录入</a>
                         </li>
                         <li>

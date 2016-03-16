@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wipe.healthy.core.dao.write.FitnessActionWriteDao">
 
-    <insert id="create" parameterType="com.wipe.healthy.core.model.FitnessAction">
+    <insert id="create" parameterType="com.wipe.healthy.core.model.FitnessAction" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO fitness_action
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="actionName != null">  action_name,</if>

@@ -13,7 +13,10 @@ import com.wipe.healty.common.utils.DateUtils;
 public class FitnessOutput {
 
     /**健身行为id**/
-    private Integer id;
+    private Integer fitnessId;
+
+    /** 詳情id**/
+    private Integer actionId;
 
     /**健身行为名称**/
     private String actionName;
@@ -45,12 +48,20 @@ public class FitnessOutput {
     /**健身行为当天气温**/
     private Float temperature;
 
-    public Integer getId() {
-        return id;
+    public Integer getFitnessId() {
+        return fitnessId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setFitnessId(Integer fitnessId) {
+        this.fitnessId = fitnessId;
+    }
+
+    public Integer getActionId() {
+        return actionId;
+    }
+
+    public void setActionId(Integer actionId) {
+        this.actionId = actionId;
     }
 
     public String getActionName() {
@@ -140,11 +151,13 @@ public class FitnessOutput {
         fitnessOutput.setBeginTime(DateUtils.formatDate(actionInfo.getBeginTime()));
         fitnessOutput.setEndTime(DateUtils.formatDateTime(actionInfo.getEndTime()));
         fitnessOutput.setData(DateUtils.formatDate(actionInfo.getData()));
+        fitnessOutput.setActionId(actionInfo.getId());
 
         fitnessOutput.setCalorie(fitnessAction.getCalorie());
         fitnessOutput.setActionName(fitnessAction.getActionName());
         fitnessOutput.setFitPeople(fitnessAction.getFitPeople());
         fitnessOutput.setStyle(fitnessAction.getStyle());
+        fitnessOutput.setFitnessId(fitnessAction.getId());
         return fitnessOutput;
     }
 }

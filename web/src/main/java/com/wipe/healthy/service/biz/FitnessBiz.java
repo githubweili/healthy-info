@@ -39,6 +39,7 @@ public class FitnessBiz {
     @Transactional(readOnly = false,propagation = Propagation.REQUIRED)
     public boolean create(FitnessAction fitnessAction,ActionInfo actionInfo){
         this.fitnessActionService.create(fitnessAction);
+        actionInfo.setActionId(fitnessAction.getId());
         this.actionInfoService.create(actionInfo);
         return true;
     }
