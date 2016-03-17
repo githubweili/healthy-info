@@ -162,8 +162,8 @@ public class FitnessInput {
     public ActionInfo convertToActionInfo(){
         ActionInfo actionInfo = new ActionInfo();
         actionInfo.setActionId(this.actionId);
-        actionInfo.setBeginTime(DateUtils.strToTime(this.beginTime+":00"));
-        actionInfo.setEndTime(Time.valueOf(this.endTime+":00"));
+        actionInfo.setBeginTime(DateUtils.strToTime(this.beginTime));
+        actionInfo.setEndTime(Time.valueOf(this.endTime));
         actionInfo.setData(DateUtils.convertDate(this.data));
         actionInfo.setTemperature(this.temperature);
         actionInfo.setWeather(this.weather);

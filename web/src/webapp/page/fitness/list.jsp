@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>用户个人信息列表</title>
+    <title>健身信息列表</title>
     <link href="../../css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
     <link href="../../css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
     <link href="../../css/animate.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>个人信息列表</h5>
+                    <h5>健身信息列表</h5>
 
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -47,49 +47,39 @@
                     <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
                         <thead>
                         <tr>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>专项</th>
-                            <th>籍贯</th>
-                            <th>食物爱好</th>
-                            <th>出生年月</th>
+                            <th>行为名称</th>
+                            <th>类型</th>
+                            <th>试用人群</th>
+                            <th>卡路里</th>
+                            <th>天气</th>
+                            <th>温度</th>
+                            <th>日期</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${userList}" var="user">
+                        <c:forEach items="${list}" var="fitness">
                             <tr class="gradeX">
-                                <td>${user.name}</td>
+                                <td>${fitness.actionName}</td>
                                 <td>
-                                    <c:if test="${user.sex == 0}">
-                                        男
+                                    <c:if test="${fitness.style == 0}">
+                                        有氧行为
                                     </c:if>
-                                    <c:if test="${user.sex == 1}">
-                                        女
+                                    <c:if test="${fitness.style == 1}">
+                                        无养运动
                                     </c:if>
-                                </td>
-                                <td class="center">${user.major}</td>
-                                <td class="center">${user.nativePlace}</td>
-                                <td >
-                                    <c:if test="${user.foodHabits == 0}">
-                                        清淡
-                                    </c:if>
-                                    <c:if test="${user.foodHabits == 1}">
-                                        偏甜
-                                    </c:if>
-                                    <c:if test="${user.foodHabits == 2}">
-                                        偏辣
-                                    </c:if>
-                                    <c:if test="${user.foodHabits == 3}">
-                                        咸辣
+                                    <c:if test="${fitness.style == 2}">
+                                        耐力运动
                                     </c:if>
                                 </td>
-                                <td >
-                                    <fmt:formatDate value="${user.birthday}" type="date" dateStyle="long"/>
-                                </td>
+                                <td class="center">${fitness.fitPeople}</td>
+                                <td class="center">${fitness.calorie}</td>
+                                <td >${fitness.weather}</td>
+                                <td >${fitness.temperature}</td>
+                                <td >${fitness.data}</td>
                                 <td>
-                                    <a href="/user/view.do?id=${user.id}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
-                                    <a href="/user/modifyShow.do?id=${user.id}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
+                                    <a href="/fitness/view.do?id=${fitness.fitnessId}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                    <a href="/fitness/modifyShow.do?id=${fitness.fitnessId}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -114,6 +104,7 @@
 <script src="../../js/jquery-2.1.1.min.js"></script>
 <script src="../../js/bootstrap.min.js?v=3.4.0"></script>
 
+
 <!-- 自定义js -->
 <script src="../../js/content.min.js?v=1.0.0"></script>
 
@@ -130,7 +121,7 @@
         $('.footable').footable();
         <!-- 新增按钮点击-->
         $("#btn_add").click(function(){
-            document.location.href="/page/user/add.jsp";
+            document.location.href="/page/fitness/add.jsp";
         });
     });
 

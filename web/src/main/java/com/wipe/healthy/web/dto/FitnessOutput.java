@@ -30,8 +30,11 @@ public class FitnessOutput {
     /**健身行为消耗卡路里**/
     private Float calorie;
 
-    /**用户主键**/
+    /**用户名**/
     private String userName;
+
+    /**用户名**/
+   private Integer userId;
 
     /**健身行为发生日期**/
     private String data;
@@ -144,12 +147,20 @@ public class FitnessOutput {
         this.temperature = temperature;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public static FitnessOutput from(FitnessAction fitnessAction,ActionInfo actionInfo){
         FitnessOutput fitnessOutput = new FitnessOutput();
         fitnessOutput.setWeather(actionInfo.getWeather());
         fitnessOutput.setTemperature(actionInfo.getTemperature());
-        fitnessOutput.setBeginTime(DateUtils.formatDate(actionInfo.getBeginTime()));
-        fitnessOutput.setEndTime(DateUtils.formatDateTime(actionInfo.getEndTime()));
+        fitnessOutput.setBeginTime(actionInfo.getBeginTime().toString());
+        fitnessOutput.setEndTime(actionInfo.getEndTime().toString());
         fitnessOutput.setData(DateUtils.formatDate(actionInfo.getData()));
         fitnessOutput.setActionId(actionInfo.getId());
 

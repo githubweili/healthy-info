@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,13 +55,27 @@ public class FitnessController {
         return ajaxResult;
     }
 
+    private final String modifyShowViewName = "modify";
+
+    /**
+     * 健身信息修改查询
+     * @param id 信息主键
+     * @return 修改视图
+     */
+    @RequestMapping(value = "/modifyShow",method = RequestMethod.GET)
+    public ModelAndView modifyShow(Integer id){
+        ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+modifyShowViewName);
+        FitnessOutput fitnessOutput = fitnessBiz.findById(id);
+        modelAndView.addObject("fitness",fitnessOutput);
+        return modelAndView;
+    }
     /**
      * 修改健身信息
      * @param fitnessInput 健身信息输入视图
      * @return 修改结果
      */
     @ResponseBody
-    @RequestMapping(value = "/update")
+    @RequestMapping(value = "/modify")
     public AjaxResult modify(FitnessInput fitnessInput){
         AjaxResult ajaxResult = new AjaxResult();
         try {
@@ -86,7 +101,7 @@ public class FitnessController {
     public ModelAndView view(Integer id){
         ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+viewViewName);
         FitnessOutput fitnessOutput = fitnessBiz.findById(id);
-        modelAndView.addObject(fitnessOutput);
+        modelAndView.addObject("fitness",fitnessOutput);
         return modelAndView;
     }
 
@@ -100,7 +115,28 @@ public class FitnessController {
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+listViewName);
         List<FitnessOutput> fitnessOutputList = fitnessBiz.list();
-        modelAndView.addObject(fitnessOutputList);
+        modelAndView.addObject("list",fitnessOutputList);
         return modelAndView;
+    }
+
+    /**
+     * 删除健身信息
+     * @param actionId 健身信息异常
+     * @return 删除结果(true/false)
+     */
+    @ResponseBody
+    @RequestMapping(value = "/delete")
+    public AjaxResult delete(Integer actionId){
+        AjaxResult ajaxResult = new AjaxResult();
+        try {
+            fitnessBiz.delete(actionId);
+            ajaxResult.setDescription("删除健身信息成功");
+            ajaxResult.setSuccess(true);
+        } catch (Exception e) {
+            ajaxResult.setDescription("删除健身信息异常");
+            ajaxResult.setSuccess(false);
+           logger.error("删除健身信息异常",e);
+        }
+        return ajaxResult;
     }
 }

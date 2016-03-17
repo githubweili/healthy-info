@@ -13,6 +13,7 @@
     <link href="../../css/style.min.css?v=3.2.0" rel="stylesheet">
     <link href="../../css/DateTimePicker.css" rel="stylesheet">
     <link href="../../css/date.css" rel="stylesheet">
+    <link href="../../css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
@@ -134,7 +135,8 @@
     <script src="../../js/plugins/validate/messages_zh.min.js"></script>
     <script src="../../js/date.js"></script>
     <script src="../../js/DateTimePicker.js"></script>
-
+    <!-- Sweet alert -->
+    <script src="../../js/plugins/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function(){
             $("#wizard").steps();
@@ -164,7 +166,10 @@
                     b.validate().settings.ignore=":disabled";
                     return b.valid()},
                 onFinished:function(c,a){
-                    var b=$(this);b.submit()}}).validate({
+                    var b=$(this);
+                   // b.submit();
+                    ajaxSubmit();
+                }}).validate({
                 errorPlacement:function(a,b){
                     b.before(a)},
                 rules:{
@@ -214,6 +219,56 @@
 
                     });
         });
+
+        <!-- 异步请求表单提交-->
+        function ajaxSubmit() {
+            var url = "/fitness/create.do";
+            $.ajax({
+                type: "post",
+                url: url,
+                dataType: "json",
+                data: $('#form').serialize(),
+                async: false,
+                success: function (data) {
+                    if (data.success) {
+                        swalSuccess(data);
+                    } else {
+                        swalError(data);
+                    }
+                },
+                error: function () {
+                    swal("请求异常!");
+                }
+            });
+        }
+
+        <!-- 成功 异常弹出框-->
+        function swalSuccess(data) {
+            swal({
+                        title: "成功",
+                        text: data.description,
+                        type: "success",
+                        howCancelButton: false,
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: true
+                    },
+                    function () {
+                        window.location.href = "http://localhost:8080/fitness/list.do";
+                    });
+        }
+        function swalError(data) {
+            swal({
+                        title: "异常",
+                        text: data.description,
+                        type: "error",
+                        showCancelButton: false,
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: true
+                    },
+                    function () {
+                        window.location.href = "http://localhost:8080/fitness/list.do";
+                    });
+        }
     </script>
 
 

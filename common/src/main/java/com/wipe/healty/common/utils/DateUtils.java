@@ -815,6 +815,10 @@ public class DateUtils {
      * @return 返回java.sql.Time格式的
      * */
     public static Time strToTime(String strDate) {
+        String[] result= strDate.split(":");
+        if (result.length==2){
+            strDate = strDate + ":00";
+        }
         String str = strDate;
         SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
         java.util.Date d = null;

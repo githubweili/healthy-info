@@ -3,8 +3,10 @@ package com.wipe.healthy.service.biz;
 import com.google.common.base.Function;
 import com.wipe.healthy.core.model.ActionInfo;
 import com.wipe.healthy.core.model.FitnessAction;
+import com.wipe.healthy.core.model.User;
 import com.wipe.healthy.core.service.IActionInfoService;
 import com.wipe.healthy.core.service.IFitnessActionService;
+import com.wipe.healthy.core.service.IUserService;
 import com.wipe.healthy.web.dto.FitnessOutput;
 import com.wipe.healty.common.utils.LangUtils;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,9 @@ public class FitnessBiz {
 
     @Resource
     IActionInfoService actionInfoService;
+
+    @Resource
+    IUserService userService;
     /**
      * 健身行为信息新增
      * @param fitnessAction 健身行为
@@ -58,12 +63,13 @@ public class FitnessBiz {
 
     /**
      * 删除健身信息行为
-     * @param id 健身行为信息主键
+     * @param actionId 健身行为信息主键
      * @return 删除结果（true/false）
      */
     @Transactional
-    public Boolean delete(Integer actionId,Integer infoId){
-        this.actionInfoService.delete(infoId);
+    public Boolean delete(Integer actionId){
+        ActionInfo actionInfo = actionInfoService.findById(actionId);
+        this.actionInfoService.delete(actionInfo.getActionId());
         this.fitnessActionService.delete(actionId);
         return true;
     }
@@ -77,6 +83,9 @@ public class FitnessBiz {
         ActionInfo actionInfo = this.actionInfoService.findById(infoId);
         FitnessAction fitnessAction = this.fitnessActionService.findById(actionInfo.getActionId());
         FitnessOutput fitnessOutput = FitnessOutput.from(fitnessAction,actionInfo);
+        User user = userService.findById(actionInfo.getUserId());
+        fitnessOutput.setUserId(user.getId());
+        fitnessOutput.setUserName(user.getName());
         return fitnessOutput;
     }
 
