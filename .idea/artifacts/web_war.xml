@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" build-on-make="true" name="web:war">
+  <artifact type="war" name="web:war">
     <output-path>$PROJECT_DIR$/web/target</output-path>
     <root id="archive" name="healthy-info.war">
       <element id="artifact" artifact-name="web:war exploded" />

@@ -111,6 +111,7 @@ public class FitnessController {
      *健身信息列表查询
      * @return 查询列表
      */
+
     @RequestMapping(value = "/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+listViewName);

@@ -1,9 +1,6 @@
 package com.wipe.healthy.web.controller;
 
 import com.google.common.base.Strings;
-import com.sun.deploy.net.HttpResponse;
-import com.wipe.healthy.core.model.Account;
-import com.wipe.healthy.core.service.IAccountService;
 import com.wipe.healthy.service.biz.AccountBiz;
 import com.wipe.healthy.web.dto.AccountInput;
 import com.wipe.healthy.web.dto.AjaxResult;

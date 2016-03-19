@@ -59,17 +59,16 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
+
                         <li>
-                            <a class="J_menuItem" href="page/fitness/add.jsp">健身信息录入</a>
+                            <a class="J_menuItem" href="fitness/list.do">健身信息</a>
+                        </li>
+
+                        <li>
+                            <a class="J_menuItem" href="user/list.do">用户信息</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="fitness/list.do">健身信息录入</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="page/user/add.jsp">信息录入</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="user/list.do">信息列表</a>
+                            <a class="J_menuItem" href="account/list.do">账户列表</a>
                         </li>
                     </ul>
                 </li>

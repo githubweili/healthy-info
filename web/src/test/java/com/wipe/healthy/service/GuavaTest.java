@@ -1,6 +1,7 @@
 package com.wipe.healthy.service;
 
 import com.google.common.base.Predicate;
+import com.google.common.cache.*;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Lists;
@@ -10,6 +11,8 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by IntelliJ IDEA.
@@ -41,6 +44,49 @@ public class GuavaTest {
         }));
 
         System.out.print(set);
+    }
+
+
+    @Test
+    public void cache(){
+        LoadingCache<Integer,Integer> loadingCache
+                = CacheBuilder.newBuilder().concurrencyLevel(8).expireAfterWrite(8, TimeUnit.SECONDS)
+                .initialCapacity(10).maximumSize(100)
+                .recordStats().removalListener(new RemovalListener<Object, Object>() {
+                    /**
+                     * Notifies the listener that a removal occurred at some point in the past.
+                     * <p/>
+                     * <p>This does not always signify that the key is now absent from the cache,
+                     * as it may have already been re-added.
+                     *
+                     * @param notification
+                     */
+                    @Override
+                    public void onRemoval(RemovalNotification<Object, Object> notification) {
+                        System.out.println(notification.getKey() + " was removed, cause is " + notification.getCause());
+                    }
+                }).build(
+                        new CacheLoader<Integer, Integer>() {
+                            @Override
+                            public Integer load(Integer key) throws Exception {
+                                System.out.println("load key " + key);
+                                return key;
+                            }
+                        }
+                );
+        for (int i=0;i<20;i++){
+            try {
+                Integer result = loadingCache.get(1);
+                System.out.println(result);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

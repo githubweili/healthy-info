@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -24,15 +25,15 @@
         <div class="col-sm-12">
             <div class="ibox-content">
                 <form class="form-horizontal m-t" id="commentForm" action="/user/create.do">
-
+                    <input name="id" value="${account.id}" style="display:none;">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">账户：</label>
                         <div class="col-sm-4 single">
-                            <input id="englishName" name="englishName" type="text" class="form-control">
+                            <input id="englishName" name="englishName" type="text" class="form-control" value="${account.englishName}">
                         </div>
                         <label class="col-sm-2 control-label">密码：</label>
                         <div class="col-sm-4 single">
-                            <input id="password" name="password" type="password" class="form-control">
+                            <input id="password" name="password" type="password" class="form-control" value="${account.password}">
                         </div>
                     </div>
 
@@ -40,14 +41,18 @@
                         <label class="col-sm-2 control-label">角色：</label>
                         <div class="col-sm-4">
                             <select class="form-control m-b" name="authorithy">
-                                <option value="user">管理员</option>
-                                <option value="admin">普通用户</option>
+                                <option value="user"
+                                        <c:if test="${account.authorithy == 'user'}">selected="true"</c:if>
+                                        >普通用户</option>
+                                <option value="admin"
+                                        <c:if test="${account.authorithy == 'admin'}">selected="true"</c:if>
+                                        >管理员用户</option>
                             </select>
                         </div>
 
                         <label class="col-sm-2 control-label">联系QQ：</label>
                         <div class="col-sm-4 single">
-                            <input id="qq" name="qq" type="text" class="form-control">
+                            <input id="qq" name="qq" type="text" class="form-control" value="${account.qq}">
                         </div>
                     </div>
 
@@ -55,7 +60,7 @@
                         <label class="col-sm-2 control-label">说明：</label>
 
                         <div class="col-sm-10">
-                            <textarea id="describes" name="describes" class="form-control"></textarea>
+                            <textarea id="describes" name="describes" class="form-control">${account.describes}</textarea>
                         </div>
                     </div>
 

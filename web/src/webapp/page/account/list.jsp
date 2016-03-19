@@ -57,13 +57,13 @@
                         <tbody>
                         <c:forEach items="${accountList}" var="account">
                             <tr class="gradeX">
-                                <td>${account.name}</td>
+                                <td>${account.englishName}</td>
                                 <td>
-                                    <c:if test="${account.authorithy == 0}">
-                                        管理员
+                                    <c:if test="${account.authorithy == 'user'}">
+                                        用户角色
                                     </c:if>
-                                    <c:if test="${account.authorithy == 1}">
-                                        用户
+                                    <c:if test="${account.authorithy == 'admin'}">
+                                        管理员角色
                                     </c:if>
                                 </td>
                                 <td class="center">${account.loginCount}</td>
@@ -72,8 +72,8 @@
                                     <fmt:formatDate value="${account.loginTime}" type="date" dateStyle="long"/>
                                 </td>
                                 <td>
-                                    <a href="/user/view.do?id=${account.id}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
-                                    <a href="/user/modifyShow.do?id=${account.id}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
+                                    <a href="/account/view.do?id=${account.id}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                    <a href="/account/modifyShow.do?id=${account.id}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
                                 </td>
                             </tr>
                         </c:forEach>

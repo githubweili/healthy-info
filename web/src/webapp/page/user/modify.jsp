@@ -173,7 +173,7 @@
                             </button>
                         </div>
                         <div class="col-sm-4 ">
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-success" type="submit">
                                 <i class="fa fa-check"></i>
                                 提交
                             </button>

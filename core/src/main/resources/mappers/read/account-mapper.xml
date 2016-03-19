@@ -3,7 +3,7 @@
 <mapper namespace="com.wipe.healthy.core.dao.read.AccountReadDao">
 
     <sql id="account">
-        id,english_name,password,login_count,login_ip,login_time,authorithy
+        id,english_name,password,login_count,login_ip,login_time,authorithy,qq,describes
     </sql>
 
     <select id="findById" parameterType="java.lang.Integer" resultType="com.wipe.healthy.core.model.Account">
