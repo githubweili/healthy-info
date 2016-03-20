@@ -167,6 +167,7 @@ public class FitnessInput {
         actionInfo.setData(DateUtils.convertDate(this.data));
         actionInfo.setTemperature(this.temperature);
         actionInfo.setWeather(this.weather);
+        actionInfo.setUserId(this.userId);
         return actionInfo;
     }
 }

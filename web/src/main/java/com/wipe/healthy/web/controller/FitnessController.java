@@ -1,9 +1,13 @@
 package com.wipe.healthy.web.controller;
 
+import com.wipe.healthy.core.model.Account;
+import com.wipe.healthy.core.model.User;
+import com.wipe.healthy.core.service.IUserService;
 import com.wipe.healthy.service.biz.FitnessBiz;
 import com.wipe.healthy.web.dto.AjaxResult;
 import com.wipe.healthy.web.dto.FitnessInput;
 import com.wipe.healthy.web.dto.FitnessOutput;
+import com.wipe.healthy.web.utils.SessionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,6 +33,8 @@ import java.util.List;
 public class FitnessController {
     @Resource
     FitnessBiz fitnessBiz;
+    @Resource
+    IUserService userService;
 
     protected static Logger logger = LoggerFactory.getLogger(FitnessController.class);
 
@@ -40,8 +49,11 @@ public class FitnessController {
      */
     @ResponseBody
     @RequestMapping(value ="/create" )
-    public AjaxResult create(FitnessInput fitnessInput){
+    public AjaxResult create(FitnessInput fitnessInput,HttpServletRequest request){
         AjaxResult ajaxResult = new AjaxResult();
+        Account account = SessionUtils.getAccount(request);
+        User user = userService.findByAccountId(account.getId());
+        fitnessInput.setUserId(user.getId());
         try {
             fitnessBiz.create(fitnessInput.convertToFitnessAction(),
                     fitnessInput.convertToActionInfo());
@@ -113,9 +125,21 @@ public class FitnessController {
      */
 
     @RequestMapping(value = "/list")
-    public ModelAndView list(){
+    public ModelAndView list(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView(this.getRoutePath()+listViewName);
-        List<FitnessOutput> fitnessOutputList = fitnessBiz.list();
+        Account account = SessionUtils.getAccount(request);
+        List<FitnessOutput> fitnessOutputList;
+        if (account != null&& account.getAuthorithy().equals("user")){
+            User user = userService.findByAccountId(account.getId());
+            if (user == null){
+                modelAndView.addObject("list",Collections.emptyList());
+                return modelAndView;
+            }
+            fitnessOutputList = fitnessBiz.list(user.getId());
+        }else {
+            fitnessOutputList = fitnessBiz.list();
+        }
+
         modelAndView.addObject("list",fitnessOutputList);
         return modelAndView;
     }

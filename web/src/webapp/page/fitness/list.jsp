@@ -20,7 +20,10 @@
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
-    <button type="button"  id="btn_add" class="btn col-sm-1 btn-outline btn-success">新增</button>
+    <c:if test="${sessionScope.account.authorithy == 'user'}">
+        <button type="button"  id="btn_add" class="btn col-sm-1 btn-outline btn-success">新增</button>
+    </c:if>
+
 
     <div class="row">
         <div class="col-sm-12">

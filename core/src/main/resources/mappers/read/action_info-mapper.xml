@@ -19,6 +19,11 @@
         SELECT
         <include refid="action_info"/>
         FROM action_info
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+        </where>
     </select>
 
     <select id="batchQuery" parameterType="java.util.HashSet" resultType="com.wipe.healthy.core.model.ActionInfo">

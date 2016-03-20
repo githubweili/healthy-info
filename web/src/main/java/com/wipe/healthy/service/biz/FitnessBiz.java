@@ -1,6 +1,7 @@
 package com.wipe.healthy.service.biz;
 
 import com.google.common.base.Function;
+import com.google.common.collect.Maps;
 import com.wipe.healthy.core.model.ActionInfo;
 import com.wipe.healthy.core.model.FitnessAction;
 import com.wipe.healthy.core.model.User;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 健身行为服务层
@@ -94,8 +96,8 @@ public class FitnessBiz {
      * 返回健身信息列表
      * @return 健身信息列表
      */
-    public List<FitnessOutput> list(){
-        List<ActionInfo> actionInfoList = this.actionInfoService.list(new HashMap<String, Object>());
+    public List<FitnessOutput> list(Map<String,Object> query){
+        List<ActionInfo> actionInfoList = this.actionInfoService.list(query);
         List<FitnessOutput> outputList = LangUtils.transform(actionInfoList, new Function<ActionInfo, FitnessOutput>() {
             @Override
             public FitnessOutput apply(ActionInfo input) {
@@ -108,5 +110,23 @@ public class FitnessBiz {
             return Collections.emptyList();
         }
         return outputList;
+    }
+
+    /**
+     * 返回健身信息列表
+     * @return 健身信息列表
+     */
+    public List<FitnessOutput> list(){
+        return  this.list(new HashMap<String, Object>());
+    }
+
+    /**
+     * 返回健身信息列表
+     * @return 健身信息列表
+     */
+    public List<FitnessOutput> list(Integer userId){
+        Map<String,Object> query = Maps.newHashMap();
+        query.put("userId",userId);
+        return  this.list(query);
     }
 }

@@ -40,8 +40,8 @@
                         <label class="col-sm-2 control-label">角色：</label>
                         <div class="col-sm-4">
                             <select class="form-control m-b" name="authorithy">
-                                <option value="user">管理员</option>
-                                <option value="admin">普通用户</option>
+                                <option value="admin">管理员</option>
+                                <option value="user">普通用户</option>
                             </select>
                         </div>
 

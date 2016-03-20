@@ -49,6 +49,17 @@ public class UserService implements IUserService{
     }
 
     /**
+     * 根据账号查找用户信息
+     *
+     * @param id 账户ID
+     * @return 用户信息
+     */
+    @Override
+    public User findByAccountId(Integer id) {
+        return this.userReadDao.findByAccountId(id);
+    }
+
+    /**
      * 修改用户信息
      *
      * @param user 用户信息

@@ -1,9 +1,13 @@
 package com.wipe.healthy.web.controller;
 
+import com.google.common.collect.Lists;
+import com.wipe.healthy.core.model.Account;
 import com.wipe.healthy.core.model.User;
+import com.wipe.healthy.core.service.IUserService;
 import com.wipe.healthy.service.biz.UserBiz;
 import com.wipe.healthy.web.dto.AjaxResult;
 import com.wipe.healthy.web.dto.UserInput;
+import com.wipe.healthy.web.utils.SessionUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -25,7 +31,8 @@ import java.util.List;
 public class UserController {
     @Resource
     UserBiz userBiz;
-
+    @Resource
+    IUserService userService;
 
     public String getRoutePath() {
         return "../page/user/";
@@ -39,9 +46,12 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public AjaxResult create(UserInput userInput){
+    public AjaxResult create(UserInput userInput,HttpServletRequest request){
         AjaxResult ajaxResult = new AjaxResult(true);
-        userBiz.create(userInput.convertToUser(userInput));
+        Account account = SessionUtils.getAccount(request);
+        User user = userInput.convertToUser(userInput);
+        user.setAccountId(account.getId());
+        userBiz.create(user);
         ajaxResult.setDescription("新增用户成功");
         return ajaxResult;
     }
@@ -117,8 +127,16 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public ModelAndView list(){
-        List<User> userList = userBiz.list();
+    public ModelAndView list(HttpServletRequest request){
+        Account account = SessionUtils.getAccount(request);
+        List<User> userList;
+        //判断用户角色
+        if (account != null && account.getAuthorithy().equals("user")){
+            User user = userService.findByAccountId(account.getId());
+            userList = Lists.newArrayList(user);
+        }else {
+            userList = userBiz.list();
+        }
         ModelAndView modelAndView = new ModelAndView(getRoutePath()+listViewName);
         modelAndView.addObject("userList",userList);
         return modelAndView;

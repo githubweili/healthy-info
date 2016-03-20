@@ -44,6 +44,12 @@ public interface IUserService {
      */
     User findById(Integer id);
 
+    /**
+     * 根据账号查找用户信息
+     * @param id 账户ID
+     * @return 用户信息
+     */
+    User findByAccountId(Integer id);
 
     /**
      * 根据条件查询用户信息

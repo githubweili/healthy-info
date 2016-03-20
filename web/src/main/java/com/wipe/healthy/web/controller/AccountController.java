@@ -48,7 +48,12 @@ public class AccountController {
             accountBiz.create(accountInput.convertToAccount());
             ajaxResult.setDescription("新增账户成功");
             ajaxResult.setSuccess(true);
-        } catch (Exception e) {
+        }catch (RuntimeException re){
+            ajaxResult.setSuccess(false);
+            ajaxResult.setDescription(re.getMessage());
+            logger.error("新增账户异常",re);
+        }
+        catch (Exception e) {
             ajaxResult.setSuccess(false);
             ajaxResult.setDescription("新增账户异常");
             logger.error("新增账户异常",e);
@@ -69,7 +74,12 @@ public class AccountController {
             accountBiz.update(accountInput.convertToAccount());
             ajaxResult.setSuccess(true);
             ajaxResult.setDescription("修改账户成功");
-        } catch (Exception e) {
+        }catch (RuntimeException re){
+            ajaxResult.setSuccess(false);
+            ajaxResult.setDescription(re.getMessage());
+            logger.error("新增账户异常",re);
+        }
+        catch (Exception e) {
             ajaxResult.setSuccess(false);
             ajaxResult.setDescription("修改账户异常");
             logger.error("修改账户异常",e);

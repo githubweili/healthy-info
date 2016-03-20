@@ -13,7 +13,14 @@
         FROM user
         WHERE id = #{id}
     </select>
-    
+
+    <select id="findByAccountId" parameterType="java.lang.Integer" resultType="com.wipe.healthy.core.model.User">
+        SELECT
+        <include refid="user"/>
+        FROM user
+        WHERE account_id = #{id}
+    </select>
+
     <select id="list" parameterType="java.util.HashMap" resultType="com.wipe.healthy.core.model.User">
         SELECT
         <include refid="user"/>

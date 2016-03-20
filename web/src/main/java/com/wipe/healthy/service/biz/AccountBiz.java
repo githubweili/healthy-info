@@ -4,6 +4,7 @@ import com.wipe.healthy.core.model.Account;
 import com.wipe.healthy.core.service.IAccountService;
 import com.wipe.healty.common.utils.EncryptUtil;
 import com.wipe.healty.common.utils.HttpUtils;
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,7 +32,14 @@ public class AccountBiz {
      * @param account 账户信息
      * @return 新增账户主键
      */
-    public Integer create(Account account){
+    public Integer create(Account account)throws RuntimeException{
+        boolean isRegister = this.isRegister(account);
+        if (isRegister){
+            throw new RuntimeException("改账号已经被注册");
+        }
+        String password = EncryptUtil.MD5Hex(account.getPassword());
+        account.setPassword(password);
+        account.setLoginCount(0);
         return  accountService.create(account);
     }
 
@@ -40,7 +48,17 @@ public class AccountBiz {
      * @param account 账户信息
      * @return 修改结果（true/false）
      */
-    public Boolean update(Account account){
+    public Boolean update(Account account) throws RuntimeException{
+        boolean isRegister = this.isRegister(account);
+        if (isRegister){
+            throw new RuntimeException("改账号已经被注册");
+        }
+        Account dbAccount = accountService.findById(account.getId());
+        if (!dbAccount.getPassword().equals(account.getPassword())){
+            EncryptUtil.MD5Hex(account.getPassword());
+            String password = EncryptUtil.MD5Hex(account.getPassword());
+            account.setPassword(password);
+        }
         return accountService.update(account);
     }
 
@@ -87,8 +105,13 @@ public class AccountBiz {
      * @param account 账户信息
      * @return 是否成功（true/false）
      */
-    public boolean login(Account account){
-        Account dbAccount = accountService.findByName(account.getEnglishName());
+    public boolean login(Account account) throws Exception{
+        Account dbAccount = null;
+        try {
+            dbAccount = accountService.findByName(account.getEnglishName());
+        } catch (NullPointerException e) {
+           throw new Exception("账号不存在");
+        }
         String enctrPassword = EncryptUtil.MD5Hex(account.getPassword());
         if(dbAccount.getPassword().equals(enctrPassword)){
             return true;
@@ -113,5 +136,20 @@ public class AccountBiz {
         //写入session
         HttpSession session = request.getSession();
         session.setAttribute("account",dbAccount);
+    }
+
+
+    /**
+     * 判断账号是否被注册
+     * @param account 账户信息
+     * @return true/false
+     */
+    public boolean isRegister(Account account){
+        try {
+            accountService.findByName(account.getEnglishName());
+        } catch (TooManyResultsException te) {
+          return true;
+        }
+        return false;
     }
 }

@@ -52,6 +52,7 @@
                             <th>登陆次数</th>
                             <th>登陆IP</th>
                             <th>登陆时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -1,5 +1,7 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,21 +27,17 @@
                         <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                               <span class="block m-t-xs"><strong class="font-bold">${sessionScope.account.englishName}</strong></span>
+                                <span class="text-muted text-xs block">
+                                        <c:if test="${sessionScope.account.authorithy == 'user'}">
+                                            用户角色
+                                        </c:if>
+                                       <c:if test="${sessionScope.account.authorithy == 'admin'}">
+                                           管理员角色
+                                       </c:if>
+                                    <b class="caret"></b></span>
                                 </span>
                         </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
-                            </li>
-                            <li><a class="J_menuItem" href="#">个人资料</a>
-                            </li>
-                            <li><a class="J_menuItem" href="#">联系我们</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">安全退出</a>
-                            </li>
-                        </ul>
                     </div>
                     <div class="logo-element">H-F
                     </div>
@@ -67,7 +65,7 @@
                         <li>
                             <a class="J_menuItem" href="user/list.do">用户信息</a>
                         </li>
-                        <li>
+                        <li id = "userList">
                             <a class="J_menuItem" href="account/list.do">账户列表</a>
                         </li>
                     </ul>
@@ -145,7 +143,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="/login/loginOut.do" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.html" frameborder="0" data-id="index_v1.html" seamless></iframe>
@@ -173,6 +171,27 @@
 
 <!-- 第三方插件 -->
 <script src="js/plugins/pace/pace.min.js"></script>
+<script  type="text/javascript">
+    $(document).ready(function() {
+        var url = "/login/authorithy.do";
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.success) {
+                    if(data.data == 'user'){
+                        $("#userList").hide();
+                    }
+                }
+            },
+            error: function () {
+                swal("请求异常!");
+            }
+        });
+    });
 
+</script>
 </body>
 </html>

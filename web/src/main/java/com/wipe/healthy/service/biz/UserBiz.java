@@ -36,7 +36,6 @@ public class UserBiz {
     public User findById(Integer id){
         return userService.findById(id);
     }
-
     /**
      * 删除用户信息
      * @param id 用户信息主键

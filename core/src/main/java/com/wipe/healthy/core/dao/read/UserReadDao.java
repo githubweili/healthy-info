@@ -9,4 +9,10 @@ import com.wipe.healthy.core.model.User;
  * Time:21:36
  */
 public interface UserReadDao extends BaseReadDao<User> {
+    /**
+     * 根据账号查找用户信息
+     * @param id 账户ID
+     * @return 用户信息
+     */
+    User findByAccountId(Integer id);
 }
