@@ -47,20 +47,16 @@ public class GuavaTest {
     }
 
 
+    /**
+     * 缓存单元测试
+     */
     @Test
     public void cache(){
         LoadingCache<Integer,Integer> loadingCache
                 = CacheBuilder.newBuilder().concurrencyLevel(8).expireAfterWrite(8, TimeUnit.SECONDS)
                 .initialCapacity(10).maximumSize(100)
                 .recordStats().removalListener(new RemovalListener<Object, Object>() {
-                    /**
-                     * Notifies the listener that a removal occurred at some point in the past.
-                     * <p/>
-                     * <p>This does not always signify that the key is now absent from the cache,
-                     * as it may have already been re-added.
-                     *
-                     * @param notification
-                     */
+
                     @Override
                     public void onRemoval(RemovalNotification<Object, Object> notification) {
                         System.out.println(notification.getKey() + " was removed, cause is " + notification.getCause());

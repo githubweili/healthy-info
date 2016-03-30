@@ -1,55 +1,96 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme()+"://"+
+                request.getServerName()+":"+
+                request.getServerPort()+path+"/";
+    %>
+    <base href="<%=basePath%>"/>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>健身信息系统 - 登录</title>
     <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
-
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=3.2.0" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
     <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
 </head>
-<body class="gray-bg">
-<div>
-<%--    <img src="img/profile.jpg" height="600px" width="600px">--%>
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
-        <div>
+<br/><br/><br/>
+<!-- 轮播广告 -->
+<div id="banner_tabs" class="flexslider">
+    <ul class="slides">
+        <li>
+            <a title="" target="_blank" href="#">
+                <img width="1920" height="482" alt="" style="background: url(img/banner1.jpg) no-repeat center;" >
+            </a>
+        </li>
+        <li>
+            <a title="" href="#">
+                <img width="1920" height="482" alt="" style="background: url(img/banner3.jpg) no-repeat center;" >
+            </a>
+        </li>
+    </ul>
+    <ul class="flex-direction-nav">
+        <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+        <li><a class="flex-next" href="javascript:;">Next</a></li>
+    </ul>
+    <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+        <li><a>1</a></li>
+        <li><a>2</a></li>
+
+    </ol>
+    <div style="float: right; margin: 0px 20px;">
+        <div class="middle-box text-center loginscreen login-pos animated lightSpeedIn">
             <div>
-                <h1 class="logo-name">H+</h1>
+                <form class="m-t" role="form" id="form">
+                    <div class="form-group">
+                        <input type="text" name="englishName" class="form-control" placeholder="用户名" required="required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="verification" class="form-control" placeholder="验证码">
+                    </div>
+                    <div class="form-group" >
+                        <img src="/verification/crimg.do" onclick="changeImg()" id="validateCodeImg"
+                             style="height: 34px;width: 200px;margin-right:48px" >
+                        <a href="javascript:void(0)" onclick="changeImg()">换一张</a>
+                    </div>
+                    <button type="button" class="btn btn-primary block full-width m-b" onclick="ajaxSubmit()">登 录</button>
+                </form>
             </div>
-            <h3>欢迎使用 健身信息系统</h3>
-            <form class="m-t" role="form" id="form">
-                <div class="form-group">
-                    <input type="text" name="englishName" class="form-control" placeholder="用户名" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="密码">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="verification" class="form-control" placeholder="验证码">
-                </div>
-                <div class="form-group" >
-                    <img src="/verification/crimg.do" onclick="changeImg()" id="validateCodeImg"
-                         style="height: 65px;width: 220px" >
-                    <a href="javascript:void(0)" onclick="changeImg()">换一张</a>
-                </div>
-                <button type="button" class="btn btn-primary block full-width m-b" onclick="ajaxSubmit()">登 录</button>
-            </form>
+
         </div>
     </div>
 </div>
 
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/slider.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var bannerSlider = new Slider($('#banner_tabs'), {
+            time: 5000,
+            delay: 400,
+            event: 'hover',
+            auto: true,
+            mode: 'fade',
+            controller: $('#bannerCtrl'),
+            activeControllerCls: 'active'
+        });
+        $('#banner_tabs .flex-prev').click(function() {
+            bannerSlider.prev()
+        });
+        $('#banner_tabs .flex-next').click(function() {
+            bannerSlider.next()
+        });
+    })
 
-
-<!-- 全局js -->
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js?v=3.4.0"></script>
-<!-- Sweet alert -->
-<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
-<script>
     function changeImg(){
         var a=document.getElementById("validateCodeImg").src="/verification/crimg.do?a="+Math.random();
     }
@@ -93,15 +134,19 @@
     }
     function swalError(data) {
         swal({
-                    title: "登陆错误",
-                    text: data.description,
-                    type: "info",
-                    showCancelButton: false,
-                    closeOnConfirm: false,
-                    showLoaderOnConfirm: true
-                });
+            title: "登陆错误",
+            text: data.description,
+            type: "info",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true
+        });
     }
 </script>
 
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    <p>地址：武汉市洪山区珞喻路461号</p>
+    <p>体育工程与信息技术学院 旗下产品  健身信息管理系统</p>
+</div>
 </body>
 </html>
