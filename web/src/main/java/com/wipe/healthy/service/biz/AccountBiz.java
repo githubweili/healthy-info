@@ -107,10 +107,10 @@ public class AccountBiz {
      */
     public boolean login(Account account) throws Exception{
         Account dbAccount = null;
-        try {
-            dbAccount = accountService.findByName(account.getEnglishName());
-        } catch (NullPointerException e) {
-           throw new Exception("账号不存在");
+
+        dbAccount = accountService.findByName(account.getEnglishName());
+        if (dbAccount == null){
+            throw new Exception("账号不存在");
         }
         String enctrPassword = EncryptUtil.MD5Hex(account.getPassword());
         if(dbAccount.getPassword().equals(enctrPassword)){

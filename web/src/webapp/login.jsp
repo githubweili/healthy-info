@@ -72,6 +72,9 @@
 
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/slider.js"></script>
+<script src="js/bootstrap.min.js?v=3.4.0"></script>
+<!-- Sweet alert -->
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(function() {
         var bannerSlider = new Slider($('#banner_tabs'), {
