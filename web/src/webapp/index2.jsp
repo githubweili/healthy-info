@@ -83,7 +83,7 @@
                             <a class="J_menuItem" href="index.jsp">页面一</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="#">页面二</a>
+                            <a class="J_menuItem" href="page/charts/broken.jsp">页面二</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="#">页面三</a>

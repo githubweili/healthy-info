@@ -9,73 +9,86 @@
   <!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)-->
   <!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
   <div id="main" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
-  <div id="mainMap" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
 
-
-  <script src="js/echarts.js"></script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="test/echarts.min.js"></script>
   <script type="text/javascript">
-
-
-      require.config({
-          paths: {
-              echarts: './js'
-          }
-      });
-      require(
-              [
-                  'echarts',
-                  'echarts/chart/bar',
-                  'echarts/chart/line',
-                  'echarts/chart/map'
+      var myChart = echarts.init(document.getElementById('main'));
+      $.get('/chart/weightVPulmonary.do').done(function(data){
+          myChart.setOption({
+              title : {
+                  text: '体重-肺活量/心率',
+                  subtext: '数据来源于健身信息系统'
+              },
+              tooltip : {
+                  trigger: 'axis'
+              },
+              legend: {
+                  data:['心率','肺活量']
+              },
+              toolbox: {
+                  show : true,
+                  feature : {
+                      mark : {show: true},
+                      dataView : {show: true, readOnly: false},
+                      magicType : {show: true, type: ['line', 'bar']},
+                      restore : {show: true},
+                      saveAsImage : {show: true}
+                  }
+              },
+              calculable : true,
+              xAxis : [
+                  {
+                      type : 'category',
+                      boundaryGap : false,
+                      data : data.data.weightList
+                  }
               ],
-              function (ec) {
-                  //--- 折柱 ---
-                  var myChart = ec.init(document.getElementById('main'));
-                  myChart.setOption({
-                      tooltip : {
-                          trigger: 'axis'
+              yAxis : [
+                  {
+                      type : 'value',
+                      axisLabel : {
+                          formatter: '{value} '
+                      }
+                  }
+              ],
+              series : [
+                  {
+                      name:'心率',
+                      type:'line',
+                      data:data.data.pulmonaryList,
+                      markPoint : {
+                          data : [
+                              {type : 'max', name: '最大值'},
+                              {type : 'min', name: '最小值'}
+                          ]
                       },
-                      legend: {
-                          data:['肺活量','心率']
+                      markLine : {
+                          data : [
+                              {type : 'average', name: '平均值'}
+                          ]
+                      }
+                  },
+                  {
+                      name:'肺活量',
+                      type:'line',
+                      data:data.data.heartRateList,
+                      markPoint : {
+                          data : [
+                              {type : 'max', name: '最大值'},
+                              {type : 'min', name: '最小值'}
+                          ]
                       },
-                      toolbox: {
-                          show : true,
-                          feature : {
-                              mark : {show: true},
-                              dataView : {show: true, readOnly: false},
-                              magicType : {show: true, type: ['line', 'bar']},
-                              restore : {show: true},
-                              saveAsImage : {show: true}
-                          }
-                      },
-                      calculable : true,
-                      xAxis : [
-                          {
-                              type : 'category',
-                              data : ['50kg','60kg','70kg','80kg']
-                          }
-                      ],
-                      yAxis : [
-                          {
-                              type : 'value',
-                              splitArea : {show : true}
-                          }
-                      ],
-                      series : [
-                          {
-                              name:'肺活量',
-                              type:'bar',
-                              data:[2.0, 4.9, 7.0, 23.]
-                          },
-                          {
-                              name:'心率',
-                              type:'bar',
-                              data:[2.6, 5.9, 9.0, 26.4]
-                          }
-                      ]
-                  });
-              }
-      );
+                      markLine : {
+                          data : [
+                              {type : 'average', name : '平均值'}
+                          ]
+                      }
+                  }
+              ]
+          });
+      });
+
 
   </script>
   </body>
